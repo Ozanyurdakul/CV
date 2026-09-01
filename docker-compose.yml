@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # 1. VERITABANI KATMANI
+  db:
+    image: postgres:15-alpine
+    container_name: devops_db
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+
+  # 2. BACKEND KATMANI (API)
+  backend:
+    build: ./backend
+    container_name: devops_backend
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    restart: always
+
+  # 3. FRONTEND KATMANI (UI)
+  frontend:
+    build: ./frontend
+    container_name: devops_frontend
+    environment:
+      BACKEND_URL: http://backend:5000
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
+
+# VERILERIN UCUP GITMEMESI ICIN VOLUME TANIMI
+volumes:
+  pgdata:

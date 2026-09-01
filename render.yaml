@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: cv-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    plan: free
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: cv-db
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: cv-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: cv-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: cv-db
+          property: database
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: "5000"
+      - key: ADMIN_USERNAME
+        value: "admin"
+      - key: ADMIN_PASSWORD
+        generateValue: true
+
+  - type: web
+    name: cv-frontend
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    plan: free
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          type: web
+          name: cv-backend
+          envVar: RENDER_INTERNAL_URL
+
+databases:
+  - name: cv-db
+    plan: free
