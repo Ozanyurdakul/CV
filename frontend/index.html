@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KariyerNet | Kariyer Platformu</title>
-  <meta name="description" content="Profilinizi olusturun, is ilanlarina basvurun, CV'nizi paylas?n ve forum'da tartismalara kat?l?n.">
+  <title>Ozan Yurdakul | Kariyer Platformu</title>
+  <meta name="description" content="Profilinizi oluşturun, iş ilanlarına başvurun, CV'nizi paylaşın ve forumda kariyerinizi geliştirin.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
       --bg-primary: #0a0e17;
       --bg-secondary: #111827;
-      --bg-card: rgba(17, 24, 39, 0.8);
-      --bg-glass: rgba(17, 24, 39, 0.6);
-      --border-color: rgba(0, 224, 255, 0.1);
-      --border-hover: rgba(0, 224, 255, 0.3);
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-glass: rgba(17, 24, 39, 0.65);
+      --border-color: rgba(0, 224, 255, 0.12);
+      --border-hover: rgba(0, 224, 255, 0.35);
       --text-primary: #f0f6fc;
       --text-secondary: #8b949e;
       --text-muted: #6b7280;
@@ -30,14 +30,14 @@
       --radius: 12px;
       --radius-sm: 8px;
       --radius-lg: 20px;
-      --shadow: 0 4px 24px rgba(0,0,0,0.3);
-      --shadow-glow: 0 0 30px rgba(0,224,255,0.1);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --shadow-glow: 0 0 30px rgba(0,224,255,0.15);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; overflow-x: hidden; }
-    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); cursor: pointer; }
     a:hover { color: #fff; }
     button { cursor: pointer; font-family: 'Inter', sans-serif; }
     input, textarea, select { font-family: 'Inter', sans-serif; }
@@ -45,31 +45,32 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
     /* NAVBAR */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.3rem; cursor: pointer; }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.3rem; cursor: pointer; user-select: none; }
     .nav-brand i { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.5rem; }
     .nav-brand span { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-link { padding: 8px 16px; border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: var(--transition); display: flex; align-items: center; gap: 6px; position: relative; }
+    .nav-link { padding: 8px 16px; border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: var(--transition); display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; user-select: none; }
     .nav-link:hover, .nav-link.active { color: var(--accent); background: var(--accent-glow); }
     .nav-link .badge { position: absolute; top: 2px; right: 2px; background: var(--danger); color: #fff; font-size: 0.65rem; padding: 1px 5px; border-radius: 10px; font-weight: 700; }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .nav-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; cursor: pointer; border: 2px solid transparent; transition: var(--transition); }
+    .nav-right { display: flex; align-items: center; gap: 12px; position: relative; }
+    .nav-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; cursor: pointer; border: 2px solid transparent; transition: var(--transition); color: #000; }
     .nav-avatar:hover { border-color: var(--accent); }
-    .nav-user-menu { position: absolute; top: 56px; right: 20px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 8px; min-width: 200px; box-shadow: var(--shadow); display: none; }
+    .nav-user-menu { position: absolute; top: 52px; right: 0; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 8px; min-width: 200px; box-shadow: var(--shadow); display: none; z-index: 1001; }
     .nav-user-menu.show { display: block; }
-    .nav-user-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.9rem; }
+    .nav-user-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.9rem; cursor: pointer; }
     .nav-user-menu a:hover { background: var(--accent-glow); color: var(--accent); }
 
     /* BUTTONS */
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; border: none; transition: var(--transition); }
-    .btn-primary { background: var(--gradient); color: #000; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; border: none; transition: var(--transition); cursor: pointer; user-select: none; }
+    .btn-primary { background: var(--gradient); color: #000; font-weight: 700; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,224,255,0.3); }
     .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-    .btn-secondary:hover { background: var(--accent-glow); }
+    .btn-secondary:hover { background: var(--accent-glow); color: #fff; }
     .btn-ghost { background: transparent; color: var(--text-secondary); }
     .btn-ghost:hover { color: var(--accent); background: var(--accent-glow); }
     .btn-danger { background: var(--danger); color: #fff; }
+    .btn-danger:hover { background: #dc2626; }
     .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
     .btn-lg { padding: 14px 32px; font-size: 1rem; }
 
@@ -88,7 +89,7 @@
     .card-title { font-size: 1.1rem; font-weight: 700; }
 
     /* BADGES */
-    .badge-status { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .badge-status { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
     .badge-pending { background: rgba(245,158,11,0.15); color: var(--warning); }
     .badge-interview { background: rgba(59,130,246,0.15); color: var(--info); }
     .badge-accepted { background: rgba(34,197,94,0.15); color: var(--success); }
@@ -98,9 +99,9 @@
     .badge-office { background: rgba(59,130,246,0.15); color: var(--info); }
 
     /* MODAL */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
-    .modal { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn 0.3s ease; }
+    .modal { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn 0.3s ease; box-shadow: var(--shadow); }
     @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.2rem; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition); }
     .modal-close:hover { background: var(--accent-glow); color: var(--accent); }
@@ -109,19 +110,20 @@
 
     /* HERO */
     .hero { padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 50% 50%, rgba(0,224,255,0.05) 0%, transparent 50%); animation: pulse 8s ease-in-out infinite; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 50% 50%, rgba(0,224,255,0.06) 0%, transparent 50%); animation: pulse 8s ease-in-out infinite; pointer-events: none; z-index: 0; }
     @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-    .hero h1 { font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; position: relative; }
+    .hero .container { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3.5rem; font-weight: 900; line-height: 1.15; margin-bottom: 20px; }
     .hero h1 span { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px; line-height: 1.6; position: relative; }
-    .hero-actions { display: flex; gap: 16px; justify-content: center; position: relative; }
-    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; position: relative; }
+    .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 32px; line-height: 1.6; }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; }
+    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; }
     .stat-card { background: var(--bg-glass); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 24px; text-align: center; backdrop-filter: blur(10px); }
-    .stat-number { font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-number { font-size: 2.2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .stat-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
 
     /* PAGE SECTIONS */
-    .page { display: none; padding: 84px 0 40px; min-height: 100vh; }
+    .page { display: none; padding: 90px 0 50px; min-height: 100vh; }
     .page.active { display: block; }
     .page-header { margin-bottom: 32px; }
     .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
@@ -129,7 +131,7 @@
 
     /* FILTERS */
     .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; align-items: center; }
-    .filters .form-input { width: auto; min-width: 180px; padding: 8px 14px; font-size: 0.85rem; }
+    .filters .form-input { width: auto; min-width: 180px; padding: 10px 14px; font-size: 0.85rem; }
     .filter-search { flex: 1; min-width: 250px; }
 
     /* GRID LAYOUTS */
@@ -140,7 +142,7 @@
     /* JOB CARD */
     .job-card { cursor: pointer; }
     .job-card .job-company { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
-    .job-card .job-title { font-size: 1.1rem; font-weight: 700; margin: 6px 0; }
+    .job-card .job-title { font-size: 1.15rem; font-weight: 700; margin: 6px 0; }
     .job-card .job-meta { display: flex; flex-wrap: wrap; gap: 12px; color: var(--text-muted); font-size: 0.8rem; margin-top: 12px; }
     .job-card .job-meta span { display: flex; align-items: center; gap: 4px; }
 
@@ -150,14 +152,14 @@
     .forum-cat-info h3 { font-size: 1rem; font-weight: 600; }
     .forum-cat-info p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
     .forum-post-card { cursor: pointer; }
-    .forum-post-card .post-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .forum-post-card .post-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
     .forum-post-card .post-excerpt { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
     .forum-post-card .post-meta { display: flex; gap: 16px; margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); }
     .forum-post-card .post-meta span { display: flex; align-items: center; gap: 4px; }
 
     /* PROFILE */
     .profile-header { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 32px; }
-    .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; flex-shrink: 0; }
+    .profile-avatar { width: 90px; height: 90px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; font-weight: 800; flex-shrink: 0; color: #000; }
     .profile-info h1 { font-size: 1.8rem; font-weight: 800; }
     .profile-info .profile-username { color: var(--accent); font-size: 0.9rem; }
     .profile-info .profile-bio { color: var(--text-secondary); margin-top: 8px; line-height: 1.5; }
@@ -174,15 +176,9 @@
     .notif-content p { font-size: 0.9rem; }
     .notif-content .notif-time { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
 
-    /* TABS */
-    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border-color); margin-bottom: 24px; }
-    .tab { padding: 10px 20px; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); cursor: pointer; border-bottom: 2px solid transparent; transition: var(--transition); }
-    .tab:hover { color: var(--text-primary); }
-    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-
     /* COMMENT */
     .comment { display: flex; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--border-color); }
-    .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; color: #000; }
     .comment-body { flex: 1; }
     .comment-author { font-weight: 600; font-size: 0.9rem; }
     .comment-time { font-size: 0.75rem; color: var(--text-muted); margin-left: 8px; }
@@ -196,8 +192,8 @@
     /* TOAST */
     .toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 5000; display: flex; flex-direction: column; gap: 8px; }
     .toast { padding: 14px 20px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 500; animation: toastIn 0.3s ease; min-width: 280px; display: flex; align-items: center; gap: 10px; }
-    .toast-success { background: rgba(34,197,94,0.15); color: var(--success); border: 1px solid rgba(34,197,94,0.3); }
-    .toast-error { background: rgba(239,68,68,0.15); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+    .toast-success { background: rgba(34,197,94,0.18); color: var(--success); border: 1px solid rgba(34,197,94,0.4); backdrop-filter: blur(10px); }
+    .toast-error { background: rgba(239,68,68,0.18); color: var(--danger); border: 1px solid rgba(239,68,68,0.4); backdrop-filter: blur(10px); }
     @keyframes toastIn { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
     /* RESPONSIVE */
@@ -216,11 +212,11 @@
     ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
 
     /* LOADING */
-    .spinner { width: 40px; height: 40px; border: 3px solid var(--border-color); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 40px auto; }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--border-color); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 30px auto; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .like-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: var(--transition); padding: 4px 8px; border-radius: var(--radius-sm); }
-    .like-btn:hover, .like-btn.liked { color: var(--danger); }
+    .like-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: var(--transition); padding: 6px 12px; border-radius: var(--radius-sm); }
+    .like-btn:hover, .like-btn.liked { color: var(--danger); background: rgba(239,68,68,0.1); }
     .like-btn.liked i { font-weight: 900; }
   </style>
 </head>
@@ -231,23 +227,23 @@
     <div class="nav-brand" onclick="navigate('home')"><i class="fas fa-rocket"></i><span>KariyerNet</span></div>
     <div class="nav-links" id="navLinks">
       <a class="nav-link active" onclick="navigate('home')" id="nav-home"><i class="fas fa-home"></i> Ana Sayfa</a>
-      <a class="nav-link" onclick="navigate('jobs')" id="nav-jobs"><i class="fas fa-briefcase"></i> Is Ilanlari</a>
+      <a class="nav-link" onclick="navigate('jobs')" id="nav-jobs"><i class="fas fa-briefcase"></i> İş İlanları</a>
       <a class="nav-link" onclick="navigate('forum')" id="nav-forum"><i class="fas fa-comments"></i> Forum</a>
-      <a class="nav-link" onclick="navigate('people')" id="nav-people"><i class="fas fa-users"></i> Kisiler</a>
+      <a class="nav-link" onclick="navigate('people')" id="nav-people"><i class="fas fa-users"></i> Kişiler</a>
       <a class="nav-link" onclick="navigate('notifications')" id="nav-notifications" style="display:none"><i class="fas fa-bell"></i><span class="badge" id="notifBadge" style="display:none">0</span></a>
     </div>
     <div class="nav-right">
       <div id="authButtons">
-        <button class="btn btn-primary btn-sm" onclick="showModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Giris Yap</button>
+        <button class="btn btn-primary btn-sm" onclick="showModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
       </div>
       <div id="userNav" style="display:none">
         <div class="nav-avatar" id="navAvatar" onclick="toggleUserMenu()">O</div>
         <div class="nav-user-menu" id="userMenu">
-          <a onclick="navigate('profile');toggleUserMenu()"><i class="fas fa-user"></i> Profilim</a>
-          <a onclick="navigate('cv-builder');toggleUserMenu()"><i class="fas fa-file-alt"></i> CV Olustur</a>
-          <a onclick="navigate('my-applications');toggleUserMenu()"><i class="fas fa-paper-plane"></i> Basvurularim</a>
-          <a onclick="navigate('post-job');toggleUserMenu()"><i class="fas fa-plus-circle"></i> Ilan Ver</a>
-          <a onclick="logout()" style="color:var(--danger)"><i class="fas fa-sign-out-alt"></i> Cikis Yap</a>
+          <a onclick="navigate('profile')"><i class="fas fa-user"></i> Profilim</a>
+          <a onclick="navigate('cv-builder')"><i class="fas fa-file-alt"></i> CV Oluştur</a>
+          <a onclick="navigate('my-applications')"><i class="fas fa-paper-plane"></i> Başvurularım</a>
+          <a onclick="navigate('post-job')"><i class="fas fa-plus-circle"></i> İlan Ver</a>
+          <a onclick="logout()" style="color:var(--danger)"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
         </div>
       </div>
     </div>
@@ -260,24 +256,24 @@
   <div class="page active" id="page-home">
     <div class="hero">
       <div class="container">
-        <h1>Kariyerini <span>Sekillendirmenin</span><br>En Akilli Yolu</h1>
-        <p>Profilini olustur, hayalindeki ise basvur, CV'ni paylas ve binlerce profesyonelle forum'da bulusarak kariyerini ileriye tasi.</p>
+        <h1>Kariyerini <span>Şekillendirmenin</span><br>En Akıllı Yolu</h1>
+        <p>Profilini oluştur, hayalindeki işe başvur, CV'ni paylaş ve binlerce profesyonelle forumda buluşarak kariyerini ileriye taşı.</p>
         <div class="hero-actions">
-          <button class="btn btn-primary btn-lg" onclick="showModal('registerModal')"><i class="fas fa-user-plus"></i> Hemen Basla</button>
-          <button class="btn btn-secondary btn-lg" onclick="navigate('jobs')"><i class="fas fa-search"></i> Ilanlari Gez</button>
+          <button class="btn btn-primary btn-lg" onclick="handleStartAction()"><i class="fas fa-user-plus"></i> Hemen Başla</button>
+          <button class="btn btn-secondary btn-lg" onclick="navigate('jobs')"><i class="fas fa-search"></i> İlanları Gez</button>
         </div>
         <div class="hero-stats" id="heroStats">
-          <div class="stat-card"><div class="stat-number" id="statUsers">0</div><div class="stat-label">Kayitli Uye</div></div>
-          <div class="stat-card"><div class="stat-number" id="statJobs">0</div><div class="stat-label">Aktif Ilan</div></div>
+          <div class="stat-card"><div class="stat-number" id="statUsers">0</div><div class="stat-label">Kayıtlı Üye</div></div>
+          <div class="stat-card"><div class="stat-number" id="statJobs">0</div><div class="stat-label">Aktif İlan</div></div>
           <div class="stat-card"><div class="stat-number" id="statPosts">0</div><div class="stat-label">Forum Konusu</div></div>
-          <div class="stat-card"><div class="stat-number" id="statApps">0</div><div class="stat-label">Basvuru</div></div>
+          <div class="stat-card"><div class="stat-number" id="statApps">0</div><div class="stat-label">Başvuru</div></div>
         </div>
       </div>
     </div>
     <div class="container">
-      <div class="page-header" style="margin-top:40px"><h2 class="page-title"><i class="fas fa-fire" style="color:var(--accent)"></i> Son Ilanlar</h2></div>
+      <div class="page-header" style="margin-top:40px"><h2 class="page-title"><i class="fas fa-fire" style="color:var(--accent)"></i> Son İlanlar</h2></div>
       <div class="grid-3" id="homeJobs"></div>
-      <div class="page-header" style="margin-top:40px"><h2 class="page-title"><i class="fas fa-comments" style="color:var(--accent)"></i> Populer Konular</h2></div>
+      <div class="page-header" style="margin-top:40px"><h2 class="page-title"><i class="fas fa-comments" style="color:var(--accent)"></i> Popüler Konular</h2></div>
       <div class="grid-2" id="homePosts"></div>
     </div>
   </div>
@@ -285,11 +281,11 @@
   <!-- ========== JOBS PAGE ========== -->
   <div class="page" id="page-jobs">
     <div class="container">
-      <div class="page-header"><h1 class="page-title">Is Ilanlari</h1><p class="page-subtitle">Hayalindeki isi bul ve hemen basvur</p></div>
+      <div class="page-header"><h1 class="page-title">İş İlanları</h1><p class="page-subtitle">Hayalindeki işi bul ve hemen başvur</p></div>
       <div class="filters">
-        <input class="form-input filter-search" placeholder="Pozisyon, sirket veya anahtar kelime..." id="jobSearch" oninput="filterJobs()">
-        <select class="form-input" id="jobWorkType" onchange="filterJobs()"><option value="">Calisma Sekli</option><option value="remote">Remote</option><option value="hybrid">Hibrit</option><option value="office">Ofis</option></select>
-        <select class="form-input" id="jobSector" onchange="filterJobs()"><option value="">Sektor</option><option value="Yazilim">Yazilim</option><option value="Pazarlama">Pazarlama</option><option value="Tasarim">Tasarim</option><option value="Finans">Finans</option><option value="Saglik">Saglik</option><option value="Egitim">Egitim</option></select>
+        <input class="form-input filter-search" placeholder="Pozisyon, şirket veya anahtar kelime..." id="jobSearch" oninput="filterJobs()">
+        <select class="form-input" id="jobWorkType" onchange="filterJobs()"><option value="">Çalışma Şekli (Tümü)</option><option value="remote">Remote</option><option value="hybrid">Hibrit</option><option value="office">Ofis</option></select>
+        <select class="form-input" id="jobSector" onchange="filterJobs()"><option value="">Sektör (Tümü)</option><option value="Yazilim">Yazılım</option><option value="Pazarlama">Pazarlama</option><option value="Tasarim">Tasarım</option><option value="Finans">Finans</option><option value="Saglik">Sağlık</option><option value="Egitim">Eğitim</option></select>
       </div>
       <div id="jobsList"></div>
     </div>
@@ -303,24 +299,24 @@
   <!-- ========== POST JOB PAGE ========== -->
   <div class="page" id="page-post-job">
     <div class="container" style="max-width:700px">
-      <div class="page-header"><h1 class="page-title">Yeni Ilan Olustur</h1></div>
+      <div class="page-header"><h1 class="page-title">Yeni İlan Oluştur</h1></div>
       <div class="card">
-        <div class="form-group"><label class="form-label">Pozisyon Basligi *</label><input class="form-input" id="pjTitle" placeholder="Ornegin: Full Stack Developer"></div>
-        <div class="form-group"><label class="form-label">Sirket Adi *</label><input class="form-input" id="pjCompany" placeholder="Sirket adi"></div>
-        <div class="form-group"><label class="form-label">Aciklama *</label><textarea class="form-input" id="pjDesc" placeholder="Is tanimi, gereksinimler, avantajlar..." rows="6"></textarea></div>
+        <div class="form-group"><label class="form-label">Pozisyon Başlığı *</label><input class="form-input" id="pjTitle" placeholder="Örn: Full Stack Developer"></div>
+        <div class="form-group"><label class="form-label">Şirket Adı *</label><input class="form-input" id="pjCompany" placeholder="Şirket adı"></div>
+        <div class="form-group"><label class="form-label">Açıklama *</label><textarea class="form-input" id="pjDesc" placeholder="İş tanımı, gereksinimler, avantajlar..." rows="6"></textarea></div>
         <div class="grid-2">
-          <div class="form-group"><label class="form-label">Konum</label><input class="form-input" id="pjLocation" placeholder="Istanbul, Remote..."></div>
-          <div class="form-group"><label class="form-label">Calisma Sekli</label><select class="form-input" id="pjWorkType"><option value="office">Ofis</option><option value="remote">Remote</option><option value="hybrid">Hibrit</option></select></div>
+          <div class="form-group"><label class="form-label">Konum</label><input class="form-input" id="pjLocation" placeholder="İstanbul, Remote..."></div>
+          <div class="form-group"><label class="form-label">Çalışma Şekli</label><select class="form-input" id="pjWorkType"><option value="office">Ofis</option><option value="remote">Remote</option><option value="hybrid">Hibrit</option></select></div>
         </div>
         <div class="grid-2">
-          <div class="form-group"><label class="form-label">Sektor</label><input class="form-input" id="pjSector" placeholder="Yazilim, Pazarlama..."></div>
-          <div class="form-group"><label class="form-label">Deneyim Seviyesi</label><select class="form-input" id="pjExp"><option value="">Seciniz</option><option value="junior">Junior</option><option value="mid">Mid-Level</option><option value="senior">Senior</option><option value="lead">Lead/Manager</option></select></div>
+          <div class="form-group"><label class="form-label">Sektör</label><input class="form-input" id="pjSector" placeholder="Yazılım, Tasarım..."></div>
+          <div class="form-group"><label class="form-label">Deneyim Seviyesi</label><select class="form-input" id="pjExp"><option value="">Seçiniz</option><option value="junior">Junior</option><option value="mid">Mid-Level</option><option value="senior">Senior</option><option value="lead">Lead/Manager</option></select></div>
         </div>
         <div class="grid-2">
-          <div class="form-group"><label class="form-label">Maas Araligi</label><input class="form-input" id="pjSalary" placeholder="35.000 - 50.000 TL"></div>
-          <div class="form-group"><label class="form-label">Son Basvuru Tarihi</label><input class="form-input" id="pjDeadline" type="date"></div>
+          <div class="form-group"><label class="form-label">Maaş Aralığı</label><input class="form-input" id="pjSalary" placeholder="40.000 - 60.000 TL"></div>
+          <div class="form-group"><label class="form-label">Son Başvuru Tarihi</label><input class="form-input" id="pjDeadline" type="date"></div>
         </div>
-        <button class="btn btn-primary btn-lg" onclick="postJob()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Ilani Yayinla</button>
+        <button class="btn btn-primary btn-lg" onclick="postJob()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> İlanı Yayınla</button>
       </div>
     </div>
   </div>
@@ -328,7 +324,7 @@
   <!-- ========== MY APPLICATIONS PAGE ========== -->
   <div class="page" id="page-my-applications">
     <div class="container">
-      <div class="page-header"><h1 class="page-title">Basvurularim</h1></div>
+      <div class="page-header"><h1 class="page-title">Başvurularım</h1></div>
       <div id="myApplicationsList"></div>
     </div>
   </div>
@@ -336,9 +332,9 @@
   <!-- ========== FORUM PAGE ========== -->
   <div class="page" id="page-forum">
     <div class="container">
-      <div class="page-header"><h1 class="page-title">Forum</h1><p class="page-subtitle">Tartismalara katil, deneyimlerini paylas</p></div>
+      <div class="page-header"><h1 class="page-title">Forum</h1><p class="page-subtitle">Tartışmalara katıl, sektör deneyimlerini paylaş</p></div>
       <div class="grid-2" id="forumCategories"></div>
-      <div style="margin-top:32px">
+      <div style="margin-top:36px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
           <h2 style="font-size:1.3rem;font-weight:700">Son Konular</h2>
           <button class="btn btn-primary btn-sm" onclick="showModal('newPostModal')" id="btnNewPost" style="display:none"><i class="fas fa-plus"></i> Yeni Konu</button>
@@ -356,8 +352,8 @@
   <!-- ========== PEOPLE PAGE ========== -->
   <div class="page" id="page-people">
     <div class="container">
-      <div class="page-header"><h1 class="page-title">Kisiler</h1><p class="page-subtitle">Platformdaki profesyonelleri kesfet</p></div>
-      <div class="filters"><input class="form-input filter-search" placeholder="Isim veya beceri ile ara..." id="peopleSearch" oninput="searchPeople()"></div>
+      <div class="page-header"><h1 class="page-title">Kişiler</h1><p class="page-subtitle">Platformdaki profesyonelleri keşfet</p></div>
+      <div class="filters"><input class="form-input filter-search" placeholder="İsim veya beceri ile ara..." id="peopleSearch" oninput="searchPeople()"></div>
       <div class="grid-3" id="peopleList"></div>
     </div>
   </div>
@@ -370,15 +366,15 @@
   <!-- ========== PROFILE EDIT PAGE ========== -->
   <div class="page" id="page-profile-edit">
     <div class="container" style="max-width:700px">
-      <div class="page-header"><h1 class="page-title">Profili Duzenle</h1></div>
+      <div class="page-header"><h1 class="page-title">Profili Düzenle</h1></div>
       <div class="card">
         <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" id="peFullName"></div>
-        <div class="form-group"><label class="form-label">Hakkimda</label><textarea class="form-input" id="peBio" rows="4"></textarea></div>
-        <div class="form-group"><label class="form-label">Konum</label><input class="form-input" id="peLocation" placeholder="Istanbul, Turkiye"></div>
+        <div class="form-group"><label class="form-label">Hakkımda</label><textarea class="form-input" id="peBio" rows="4"></textarea></div>
+        <div class="form-group"><label class="form-label">Konum</label><input class="form-input" id="peLocation" placeholder="İstanbul, Türkiye"></div>
         <div class="form-group"><label class="form-label">LinkedIn URL</label><input class="form-input" id="peLinkedin" placeholder="https://linkedin.com/in/..."></div>
         <div class="form-group"><label class="form-label">GitHub URL</label><input class="form-input" id="peGithub" placeholder="https://github.com/..."></div>
         <div class="form-group"><label class="form-label">Website URL</label><input class="form-input" id="peWebsite" placeholder="https://..."></div>
-        <div class="form-group"><label class="form-label">Yetenekler (virgul ile ayirin)</label><input class="form-input" id="peSkills" placeholder="JavaScript, Python, Docker, SQL..."></div>
+        <div class="form-group"><label class="form-label">Yetenekler (virgül ile ayırın)</label><input class="form-input" id="peSkills" placeholder="JavaScript, Python, Docker, SQL..."></div>
         <button class="btn btn-primary btn-lg" onclick="updateProfile()" style="width:100%;justify-content:center"><i class="fas fa-save"></i> Kaydet</button>
       </div>
     </div>
@@ -387,7 +383,7 @@
   <!-- ========== CV BUILDER PAGE ========== -->
   <div class="page" id="page-cv-builder">
     <div class="container" style="max-width:800px">
-      <div class="page-header"><h1 class="page-title">CV Olusturucu</h1><p class="page-subtitle">Profesyonel CV'nizi kolayca olusturun</p></div>
+      <div class="page-header"><h1 class="page-title">CV Oluşturucu</h1><p class="page-subtitle">Profesyonel CV'nizi kolayca oluşturun</p></div>
       <div id="cvBuilderContent"></div>
     </div>
   </div>
@@ -397,7 +393,7 @@
     <div class="container" style="max-width:700px">
       <div class="page-header" style="display:flex;justify-content:space-between;align-items:center">
         <div><h1 class="page-title">Bildirimler</h1></div>
-        <button class="btn btn-ghost btn-sm" onclick="markAllRead()"><i class="fas fa-check-double"></i> Tumunu Okundu Yap</button>
+        <button class="btn btn-ghost btn-sm" onclick="markAllRead()"><i class="fas fa-check-double"></i> Tümünü Okundu Yap</button>
       </div>
       <div class="card" id="notificationsList"></div>
     </div>
@@ -410,102 +406,69 @@
 
   <!-- ========== MODALS ========== -->
   <!-- LOGIN MODAL -->
-  <div class="modal-overlay" id="loginModal">
+  <div class="modal-overlay" id="loginModal" onclick="if(event.target===this)hideModal('loginModal')">
     <div class="modal">
       <button class="modal-close" onclick="hideModal('loginModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Giris Yap</div>
-      <div class="modal-subtitle">Hesabiniza giris yapin</div>
-      <div class="form-group"><label class="form-label">Kullanici Adi veya Email</label><input class="form-input" id="loginUsername" placeholder="kullanici adi veya email"></div>
-      <div class="form-group"><label class="form-label">Sifre</label><input class="form-input" id="loginPassword" type="password" placeholder="sifreniz"></div>
-      <button class="btn btn-primary btn-lg" onclick="login()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-sign-in-alt"></i> Giris Yap</button>
-      <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Hesabiniz yok mu? <a onclick="hideModal('loginModal');showModal('registerModal')" style="cursor:pointer">Kayit Olun</a></p>
+      <div class="modal-title">Giriş Yap</div>
+      <div class="modal-subtitle">Hesabınıza giriş yapın</div>
+      <div class="form-group"><label class="form-label">Kullanıcı Adı veya Email</label><input class="form-input" id="loginUsername" placeholder="kullanıcı adı veya email"></div>
+      <div class="form-group"><label class="form-label">Şifre</label><input class="form-input" id="loginPassword" type="password" placeholder="şifreniz"></div>
+      <button class="btn btn-primary btn-lg" onclick="login()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+      <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Hesabınız yok mu? <a onclick="hideModal('loginModal');showModal('registerModal')" style="cursor:pointer">Kayıt Olun</a></p>
     </div>
   </div>
 
   <!-- REGISTER MODAL -->
-  <div class="modal-overlay" id="registerModal">
+  <div class="modal-overlay" id="registerModal" onclick="if(event.target===this)hideModal('registerModal')">
     <div class="modal">
       <button class="modal-close" onclick="hideModal('registerModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Kayit Ol</div>
-      <div class="modal-subtitle">Kariyerini sekillendirmeye basla</div>
+      <div class="modal-title">Kayıt Ol</div>
+      <div class="modal-subtitle">Kariyerini şekillendirmeye başla</div>
       <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" id="regFullName" placeholder="Ad Soyad"></div>
-      <div class="form-group"><label class="form-label">Kullanici Adi</label><input class="form-input" id="regUsername" placeholder="kullanici_adi"></div>
+      <div class="form-group"><label class="form-label">Kullanıcı Adı</label><input class="form-input" id="regUsername" placeholder="kullanici_adi"></div>
       <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="regEmail" type="email" placeholder="email@ornek.com"></div>
-      <div class="form-group"><label class="form-label">Sifre</label><input class="form-input" id="regPassword" type="password" placeholder="En az 6 karakter"></div>
-      <button class="btn btn-primary btn-lg" onclick="register()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-user-plus"></i> Kayit Ol</button>
-      <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Zaten hesabiniz var mi? <a onclick="hideModal('registerModal');showModal('loginModal')" style="cursor:pointer">Giris Yapin</a></p>
+      <div class="form-group"><label class="form-label">Şifre</label><input class="form-input" id="regPassword" type="password" placeholder="En az 6 karakter"></div>
+      <button class="btn btn-primary btn-lg" onclick="register()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-user-plus"></i> Kayıt Ol</button>
+      <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Zaten hesabınız var mı? <a onclick="hideModal('registerModal');showModal('loginModal')" style="cursor:pointer">Giriş Yapın</a></p>
     </div>
   </div>
 
   <!-- NEW FORUM POST MODAL -->
-  <div class="modal-overlay" id="newPostModal">
+  <div class="modal-overlay" id="newPostModal" onclick="if(event.target===this)hideModal('newPostModal')">
     <div class="modal">
       <button class="modal-close" onclick="hideModal('newPostModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Yeni Konu Ac</div>
+      <div class="modal-title">Yeni Konu Aç</div>
       <div class="form-group"><label class="form-label">Kategori</label><select class="form-input" id="npCategory"></select></div>
-      <div class="form-group"><label class="form-label">Baslik</label><input class="form-input" id="npTitle" placeholder="Konu basligi"></div>
-      <div class="form-group"><label class="form-label">Icerik</label><textarea class="form-input" id="npContent" rows="6" placeholder="Dusuncelerinizi paylas?n..."></textarea></div>
-      <button class="btn btn-primary btn-lg" onclick="createForumPost()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Paylas</button>
+      <div class="form-group"><label class="form-label">Başlık</label><input class="form-input" id="npTitle" placeholder="Konu başlığı"></div>
+      <div class="form-group"><label class="form-label">İçerik</label><textarea class="form-input" id="npContent" rows="6" placeholder="Düşüncelerinizi paylaşın..."></textarea></div>
+      <button class="btn btn-primary btn-lg" onclick="createForumPost()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Paylaş</button>
     </div>
   </div>
 
   <!-- APPLY JOB MODAL -->
-  <div class="modal-overlay" id="applyModal">
+  <div class="modal-overlay" id="applyModal" onclick="if(event.target===this)hideModal('applyModal')">
     <div class="modal">
       <button class="modal-close" onclick="hideModal('applyModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Ilana Basvur</div>
+      <div class="modal-title">İlana Başvur</div>
       <div class="modal-subtitle" id="applyJobTitle"></div>
-      <div class="form-group"><label class="form-label">On Yazi (Opsiyonel)</label><textarea class="form-input" id="applyCoverLetter" rows="6" placeholder="Kendinizi k?saca tan?t?n, neden bu pozisyona uygun oldugunuzu belirtin..."></textarea></div>
-      <button class="btn btn-primary btn-lg" onclick="applyToJob()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Basvur</button>
+      <div class="form-group"><label class="form-label">Ön Yazı (Opsiyonel)</label><textarea class="form-input" id="applyCoverLetter" rows="6" placeholder="Kendinizi kısaca tanıtın..."></textarea></div>
+      <button class="btn btn-primary btn-lg" onclick="applyToJob()" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Başvur</button>
     </div>
   </div>
 
-  <!-- MODALS -->
-  <div class="modal-overlay" id="loginModal">
-    <div class="modal">
-      <button class="modal-close" onclick="hideModal('loginModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Giris Yap</div>
-      <div class="modal-subtitle">Hesabiniza giris yapin</div>
-      <div class="form-group"><label class="form-label">Kullanici Adi veya Email</label><input class="form-input" id="loginUsername"></div>
-      <div class="form-group"><label class="form-label">Sifre</label><input class="form-input" id="loginPassword" type="password"></div>
-      <button class="btn btn-primary btn-lg" onclick="login()" style="width:100%;justify-content:center">Giris Yap</button>
-      <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Hesabiniz yok mu? <a onclick="hideModal('loginModal');showModal('registerModal')" style="cursor:pointer">Kayit Olun</a></p>
-    </div>
-  </div>
-  <div class="modal-overlay" id="registerModal">
-    <div class="modal">
-      <button class="modal-close" onclick="hideModal('registerModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Kayit Ol</div>
-      <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" id="regFullName"></div>
-      <div class="form-group"><label class="form-label">Kullanici Adi</label><input class="form-input" id="regUsername"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="regEmail" type="email"></div>
-      <div class="form-group"><label class="form-label">Sifre</label><input class="form-input" id="regPassword" type="password"></div>
-      <button class="btn btn-primary btn-lg" onclick="register()" style="width:100%;justify-content:center">Kayit Ol</button>
-      <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Hesabiniz var mi? <a onclick="hideModal('registerModal');showModal('loginModal')" style="cursor:pointer">Giris Yapin</a></p>
-    </div>
-  </div>
-  <div class="modal-overlay" id="newPostModal">
-    <div class="modal">
-      <button class="modal-close" onclick="hideModal('newPostModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Yeni Konu Ac</div>
-      <div class="form-group"><label class="form-label">Kategori</label><select class="form-input" id="npCategory"></select></div>
-      <div class="form-group"><label class="form-label">Baslik</label><input class="form-input" id="npTitle"></div>
-      <div class="form-group"><label class="form-label">Icerik</label><textarea class="form-input" id="npContent" rows="5"></textarea></div>
-      <button class="btn btn-primary btn-lg" onclick="createForumPost()" style="width:100%;justify-content:center">Paylas</button>
-    </div>
-  </div>
-  <div class="modal-overlay" id="applyModal">
-    <div class="modal">
-      <button class="modal-close" onclick="hideModal('applyModal')"><i class="fas fa-times"></i></button>
-      <div class="modal-title">Ilana Basvur</div>
-      <div class="modal-subtitle" id="applyJobTitle"></div>
-      <div class="form-group"><label class="form-label">On Yazi</label><textarea class="form-input" id="applyCoverLetter" rows="5"></textarea></div>
-      <button class="btn btn-primary btn-lg" onclick="applyToJob()" style="width:100%;justify-content:center">Basvur</button>
-    </div>
-  </div>
-
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    const API_URL = '';
+    // Universal API host resolver
+    const API_URL = (function() {
+      if (window.location.hostname.includes('render.com')) {
+        return 'https://cv-backend-8gpl.onrender.com';
+      }
+      if (window.location.port === '5000') {
+        return '';
+      }
+      return 'http://' + window.location.hostname + ':5000';
+    })();
+
     let currentUser = null;
     let token = localStorage.getItem('token');
     let currentJobId = null;
@@ -515,139 +478,855 @@
       const h = { 'Content-Type': 'application/json', ...opt.headers };
       if (token) h['Authorization'] = 'Bearer ' + token;
       const r = await fetch(API_URL + ep, { ...opt, headers: h });
-      const d = await r.json();
-      if (!r.ok) throw new Error(d.error || 'Hata');
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(d.error || 'İşlem başarısız');
       return d;
     }
 
     function toast(m, t='success') {
+      const c = document.getElementById('toastContainer');
+      if (!c) return;
       const e = document.createElement('div');
       e.className = 'toast toast-' + t;
-      e.innerHTML = '<i class="fas fa-' + (t==='success'?'check-circle':'exclamation-circle') + '"></i> ' + m;
-      document.getElementById('toastContainer').appendChild(e);
+      e.innerHTML = '<i class="fas fa-' + (t === 'success' ? 'check-circle' : 'exclamation-circle') + '"></i> ' + m;
+      c.appendChild(e);
       setTimeout(() => e.remove(), 4000);
     }
 
-    function showModal(id) { document.getElementById(id).classList.add('show'); }
-    function hideModal(id) { document.getElementById(id).classList.remove('show'); }
-    function toggleUserMenu() { document.getElementById('userMenu').classList.toggle('show'); }
-    function timeAgo(d) { const s=(Date.now()-new Date(d).getTime())/1000; if(s<60)return'az once'; if(s<3600)return Math.floor(s/60)+' dk'; if(s<86400)return Math.floor(s/3600)+' saat'; return Math.floor(s/86400)+' gun'; }
-    function getInitial(n) { return (n||'U')[0].toUpperCase(); }
+    function showModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('show');
+    }
+
+    function hideModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('show');
+    }
+
+    function toggleUserMenu() {
+      const m = document.getElementById('userMenu');
+      if (m) m.classList.toggle('show');
+    }
+
+    function handleStartAction() {
+      if (currentUser) {
+        navigate('jobs');
+      } else {
+        showModal('registerModal');
+      }
+    }
+
+    function timeAgo(d) {
+      if (!d) return '';
+      const s = (Date.now() - new Date(d).getTime()) / 1000;
+      if (s < 60) return 'az önce';
+      if (s < 3600) return Math.floor(s / 60) + ' dk';
+      if (s < 86400) return Math.floor(s / 3600) + ' saat';
+      return Math.floor(s / 86400) + ' gün';
+    }
+
+    function getInitial(n) {
+      return (n || 'U')[0].toUpperCase();
+    }
 
     function navigate(page, param) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+      
       const t = document.getElementById('page-' + page);
       if (t) t.classList.add('active');
+      
       const nl = document.getElementById('nav-' + page);
       if (nl) nl.classList.add('active');
-      document.getElementById('userMenu').classList.remove('show');
+      
+      const menu = document.getElementById('userMenu');
+      if (menu) menu.classList.remove('show');
+      
       window.scrollTo(0, 0);
-      if(page==='home')loadHome(); else if(page==='jobs')loadJobs(); else if(page==='job-detail')loadJobDetail(param);
-      else if(page==='forum')loadForum(); else if(page==='forum-post')loadForumPost(param);
-      else if(page==='people')loadPeople(); else if(page==='profile')loadMyProfile();
-      else if(page==='profile-edit')loadProfileEdit(); else if(page==='user-profile')loadUserProfile(param);
-      else if(page==='notifications')loadNotifications(); else if(page==='cv-builder')loadCVBuilder();
+
+      if (page === 'home') loadHome();
+      else if (page === 'jobs') loadJobs();
+      else if (page === 'job-detail') loadJobDetail(param);
+      else if (page === 'forum') loadForum();
+      else if (page === 'forum-post') loadForumPost(param);
+      else if (page === 'people') loadPeople();
+      else if (page === 'profile') loadMyProfile();
+      else if (page === 'profile-edit') loadProfileEdit();
+      else if (page === 'user-profile') loadUserProfile(param);
+      else if (page === 'notifications') loadNotifications();
+      else if (page === 'cv-builder') loadCVBuilder();
+      else if (page === 'my-applications') loadMyApplications();
     }
 
     function updateUI() {
+      const authBtns = document.getElementById('authButtons');
+      const userNav = document.getElementById('userNav');
+      const navNotif = document.getElementById('nav-notifications');
+      const btnNewPost = document.getElementById('btnNewPost');
+      const navAvatar = document.getElementById('navAvatar');
+
       if (currentUser) {
-        document.getElementById('authButtons').style.display='none';
-        document.getElementById('userNav').style.display='block';
-        document.getElementById('nav-notifications').style.display='flex';
-        document.getElementById('btnNewPost').style.display='inline-flex';
-        document.getElementById('navAvatar').textContent=getInitial(currentUser.fullName||currentUser.username);
+        if (authBtns) authBtns.style.display = 'none';
+        if (userNav) userNav.style.display = 'block';
+        if (navNotif) navNotif.style.display = 'flex';
+        if (btnNewPost) btnNewPost.style.display = 'inline-flex';
+        if (navAvatar) navAvatar.textContent = getInitial(currentUser.full_name || currentUser.username);
         loadNotifCount();
       } else {
-        document.getElementById('authButtons').style.display='block';
-        document.getElementById('userNav').style.display='none';
-        document.getElementById('nav-notifications').style.display='none';
-        document.getElementById('btnNewPost').style.display='none';
+        if (authBtns) authBtns.style.display = 'block';
+        if (userNav) userNav.style.display = 'none';
+        if (navNotif) navNotif.style.display = 'none';
+        if (btnNewPost) btnNewPost.style.display = 'none';
       }
     }
 
     async function login() {
-      const u=document.getElementById('loginUsername').value, p=document.getElementById('loginPassword').value;
-      if(!u||!p)return toast('Alanlari doldurun','error');
-      try { const d=await api('/api/auth/login',{method:'POST',body:JSON.stringify({username:u,password:p})}); token=d.token;currentUser=d.user;localStorage.setItem('token',token);hideModal('loginModal');updateUI();loadHome();toast('Hosgeldin!'); } catch(e){}
+      const u = document.getElementById('loginUsername').value.trim();
+      const p = document.getElementById('loginPassword').value;
+      if (!u || !p) return toast('Lütfen kullanıcı adı ve şifrenizi girin', 'error');
+
+      try {
+        const d = await api('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ username: u, password: p })
+        });
+        token = d.token;
+        currentUser = d.user;
+        localStorage.setItem('token', token);
+        hideModal('loginModal');
+        updateUI();
+        loadHome();
+        toast('Hoş geldiniz, ' + (currentUser.full_name || currentUser.username) + '!');
+      } catch (e) {
+        toast(e.message || 'Giriş yapılamadı', 'error');
+      }
     }
 
     async function register() {
-      const fn=document.getElementById('regFullName').value,u=document.getElementById('regUsername').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPassword').value;
-      if(!u||!e||!p)return toast('Zorunlu alanlari doldurun','error');
-      try { const d=await api('/api/auth/register',{method:'POST',body:JSON.stringify({username:u,email:e,password:p,full_name:fn})}); token=d.token;currentUser=d.user;localStorage.setItem('token',token);hideModal('registerModal');updateUI();loadHome();toast('Kayit basarili!'); } catch(e){}
+      const fn = document.getElementById('regFullName').value.trim();
+      const u = document.getElementById('regUsername').value.trim();
+      const em = document.getElementById('regEmail').value.trim();
+      const p = document.getElementById('regPassword').value;
+
+      if (!u || !em || !p) return toast('Lütfen zorunlu alanları doldurun', 'error');
+
+      try {
+        const d = await api('/api/auth/register', {
+          method: 'POST',
+          body: JSON.stringify({ username: u, email: em, password: p, full_name: fn })
+        });
+        token = d.token;
+        currentUser = d.user;
+        localStorage.setItem('token', token);
+        hideModal('registerModal');
+        updateUI();
+        loadHome();
+        toast('Hesabınız başarıyla oluşturuldu!');
+      } catch (e) {
+        toast(e.message || 'Kayıt başarısız', 'error');
+      }
     }
 
-    function logout() { token=null;currentUser=null;localStorage.removeItem('token');updateUI();navigate('home');toast('Cikis yapildi'); }
+    function logout() {
+      token = null;
+      currentUser = null;
+      localStorage.removeItem('token');
+      updateUI();
+      navigate('home');
+      toast('Başarıyla çıkış yapıldı');
+    }
 
-    async function checkAuth() { if(!token)return; try { const d=await api('/api/auth/me');currentUser=d.user;updateUI(); } catch(e){token=null;localStorage.removeItem('token');} }
+    async function checkAuth() {
+      if (!token) return;
+      try {
+        const d = await api('/api/auth/me');
+        currentUser = d.user;
+        updateUI();
+      } catch (e) {
+        token = null;
+        localStorage.removeItem('token');
+        updateUI();
+      }
+    }
 
-    async function loadNotifCount() { if(!token)return; try { const d=await api('/api/notifications');const b=document.getElementById('notifBadge'); if(d.unreadCount>0){b.textContent=d.unreadCount;b.style.display='block';}else{b.style.display='none';} } catch(e){} }
+    async function loadNotifCount() {
+      if (!token) return;
+      try {
+        const d = await api('/api/notifications');
+        const b = document.getElementById('notifBadge');
+        if (b) {
+          if (d.unreadCount > 0) {
+            b.textContent = d.unreadCount;
+            b.style.display = 'block';
+          } else {
+            b.style.display = 'none';
+          }
+        }
+      } catch (e) {}
+    }
 
     async function loadHome() {
-      try { const s=await api('/api/stats');document.getElementById('statUsers').textContent=s.totalUsers;document.getElementById('statJobs').textContent=s.activeJobs;document.getElementById('statPosts').textContent=s.forumPosts;document.getElementById('statApps').textContent=s.totalApplications; } catch(e){}
-      try { const d=await api('/api/jobs');const j=d.jobs.slice(0,6);document.getElementById('homeJobs').innerHTML=j.length?j.map(j=>'<div class="card job-card" onclick="navigate(\'job-detail\','+j.id+')"><div class="job-company">'+j.company+'</div><div class="job-title">'+j.title+'</div><p style="font-size:0.85rem;color:var(--text-secondary);margin-top:8px">'+(j.description||'').substring(0,100)+'...</p><div class="job-meta"><span><i class="fas fa-map-marker-alt"></i> '+(j.location||'')+'</span><span class="badge-status badge-'+j.work_type+'">'+(j.work_type==='remote'?'Remote':j.work_type==='hybrid'?'Hibrit':'Ofis')+'</span><span><i class="fas fa-clock"></i> '+timeAgo(j.created_at)+'</span></div></div>').join(''):'<div class="empty-state"><i class="fas fa-briefcase"></i><h3>Henuz ilan yok</h3></div>'; } catch(e){}
-      try { const d=await api('/api/forum/posts');const p=d.posts.slice(0,4);document.getElementById('homePosts').innerHTML=p.length?p.map(p=>'<div class="card forum-post-card" onclick="navigate(\'forum-post\','+p.id+')"><div class="post-title">'+p.title+'</div><div class="post-excerpt">'+(p.content||'').substring(0,120)+'</div><div class="post-meta"><span><i class="fas fa-user"></i> '+(p.full_name||p.username)+'</span><span><i class="fas fa-heart"></i> '+p.likes_count+'</span><span><i class="fas fa-comment"></i> '+p.comment_count+'</span></div></div>').join(''):''; } catch(e){}
+      try {
+        const s = await api('/api/stats');
+        document.getElementById('statUsers').textContent = s.totalUsers || 0;
+        document.getElementById('statJobs').textContent = s.activeJobs || 0;
+        document.getElementById('statPosts').textContent = s.forumPosts || 0;
+        document.getElementById('statApps').textContent = s.totalApplications || 0;
+      } catch (e) {}
+
+      try {
+        const d = await api('/api/jobs');
+        const j = (d.jobs || []).slice(0, 6);
+        const homeJobsEl = document.getElementById('homeJobs');
+        if (homeJobsEl) {
+          homeJobsEl.innerHTML = j.length ? j.map(item => `
+            <div class="card job-card" onclick="navigate('job-detail', ${item.id})">
+              <div class="job-company">${escapeHtml(item.company)}</div>
+              <div class="job-title">${escapeHtml(item.title)}</div>
+              <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:8px">${escapeHtml((item.description || '').substring(0, 100))}...</p>
+              <div class="job-meta">
+                <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(item.location || 'Belirtilmemiş')}</span>
+                <span class="badge-status badge-${item.work_type}">${item.work_type === 'remote' ? 'Remote' : item.work_type === 'hybrid' ? 'Hibrit' : 'Ofis'}</span>
+                <span><i class="fas fa-clock"></i> ${timeAgo(item.created_at)}</span>
+              </div>
+            </div>
+          `).join('') : '<div class="empty-state"><i class="fas fa-briefcase"></i><h3>Henüz ilan bulunmuyor</h3></div>';
+        }
+      } catch (e) {}
+
+      try {
+        const d = await api('/api/forum/posts');
+        const p = (d.posts || []).slice(0, 4);
+        const homePostsEl = document.getElementById('homePosts');
+        if (homePostsEl) {
+          homePostsEl.innerHTML = p.length ? p.map(item => `
+            <div class="card forum-post-card" onclick="navigate('forum-post', ${item.id})">
+              <div class="post-title">${escapeHtml(item.title)}</div>
+              <div class="post-excerpt">${escapeHtml((item.content || '').substring(0, 120))}...</div>
+              <div class="post-meta">
+                <span><i class="fas fa-user"></i> ${escapeHtml(item.full_name || item.username)}</span>
+                <span><i class="fas fa-heart"></i> ${item.likes_count || 0}</span>
+                <span><i class="fas fa-comment"></i> ${item.comment_count || 0}</span>
+              </div>
+            </div>
+          `).join('') : '';
+        }
+      } catch (e) {}
     }
 
     async function loadJobs() {
-      document.getElementById('jobsList').innerHTML='<div class="spinner"></div>';
-      try { const ps=new URLSearchParams();const s=document.getElementById('jobSearch').value;if(s)ps.set('search',s);const wt=document.getElementById('jobWorkType').value;if(wt)ps.set('work_type',wt);const sec=document.getElementById('jobSector').value;if(sec)ps.set('sector',sec);
-        const d=await api('/api/jobs?'+ps.toString());
-        document.getElementById('jobsList').innerHTML=d.jobs.length?'<div class="grid-2">'+d.jobs.map(j=>'<div class="card job-card" onclick="navigate(\'job-detail\','+j.id+')"><div style="display:flex;justify-content:space-between"><div><div class="job-company">'+j.company+'</div><div class="job-title">'+j.title+'</div></div><span class="badge-status badge-'+j.work_type+'">'+(j.work_type==='remote'?'Remote':j.work_type==='hybrid'?'Hibrit':'Ofis')+'</span></div><p style="font-size:0.85rem;color:var(--text-secondary);margin-top:8px">'+(j.description||'').substring(0,150)+'...</p><div class="job-meta"><span><i class="fas fa-map-marker-alt"></i> '+(j.location||'')+'</span>'+(j.salary_range?'<span><i class="fas fa-money-bill"></i> '+j.salary_range+'</span>':'')+'<span><i class="fas fa-users"></i> '+j.application_count+' basvuru</span><span><i class="fas fa-clock"></i> '+timeAgo(j.created_at)+'</span></div></div>').join('')+'</div>':'<div class="empty-state"><i class="fas fa-search"></i><h3>Ilan bulunamadi</h3></div>';
-      } catch(e){}
+      const list = document.getElementById('jobsList');
+      if (!list) return;
+      list.innerHTML = '<div class="spinner"></div>';
+      try {
+        const ps = new URLSearchParams();
+        const s = document.getElementById('jobSearch')?.value || '';
+        if (s) ps.set('search', s);
+        const wt = document.getElementById('jobWorkType')?.value || '';
+        if (wt) ps.set('work_type', wt);
+        const sec = document.getElementById('jobSector')?.value || '';
+        if (sec) ps.set('sector', sec);
+
+        const d = await api('/api/jobs?' + ps.toString());
+        const jobs = d.jobs || [];
+        list.innerHTML = jobs.length ? `
+          <div class="grid-2">
+            ${jobs.map(j => `
+              <div class="card job-card" onclick="navigate('job-detail', ${j.id})">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div>
+                    <div class="job-company">${escapeHtml(j.company)}</div>
+                    <div class="job-title">${escapeHtml(j.title)}</div>
+                  </div>
+                  <span class="badge-status badge-${j.work_type}">${j.work_type === 'remote' ? 'Remote' : j.work_type === 'hybrid' ? 'Hibrit' : 'Ofis'}</span>
+                </div>
+                <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:8px">${escapeHtml((j.description || '').substring(0, 140))}...</p>
+                <div class="job-meta">
+                  <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(j.location || 'Konum yok')}</span>
+                  ${j.salary_range ? `<span><i class="fas fa-money-bill"></i> ${escapeHtml(j.salary_range)}</span>` : ''}
+                  <span><i class="fas fa-users"></i> ${j.application_count || 0} başvuru</span>
+                  <span><i class="fas fa-clock"></i> ${timeAgo(j.created_at)}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : '<div class="empty-state"><i class="fas fa-search"></i><h3>Kriterlere uygun ilan bulunamadı</h3></div>';
+      } catch (e) {
+        list.innerHTML = '<div class="empty-state"><h3>İlanlar yüklenirken hata oluştu</h3></div>';
+      }
     }
-    function filterJobs(){clearTimeout(window._jt);window._jt=setTimeout(loadJobs,300);}
+
+    function filterJobs() {
+      clearTimeout(window._jt);
+      window._jt = setTimeout(loadJobs, 300);
+    }
 
     async function loadJobDetail(id) {
-      currentJobId=id;const el=document.getElementById('jobDetailContent');el.innerHTML='<div class="spinner"></div>';
-      try { const d=await api('/api/jobs/'+id);const j=d.job;
-        const applyBtn=currentUser?'<button class="btn btn-primary" onclick="showApplyModal('+j.id+\',\\\'\'+j.title.replace(/\'/g,"")+"\\')\"'+'>Basvur</button>':'<button class="btn btn-primary" onclick="showModal(\'loginModal\')">Giris yap ve basvur</button>';
-        el.innerHTML='<div class="card"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px"><div><div class="job-company" style="font-size:1rem">'+j.company+'</div><h1 style="font-size:1.8rem;font-weight:800;margin:8px 0">'+j.title+'</h1><div class="job-meta"><span><i class="fas fa-map-marker-alt"></i> '+(j.location||'')+'</span><span class="badge-status badge-'+j.work_type+'">'+(j.work_type==='remote'?'Remote':j.work_type==='hybrid'?'Hibrit':'Ofis')+'</span>'+(j.salary_range?'<span><i class="fas fa-money-bill"></i> '+j.salary_range+'</span>':'')+'<span><i class="fas fa-users"></i> '+j.application_count+' basvuru</span></div></div>'+applyBtn+'</div><hr style="border-color:var(--border-color);margin:20px 0"><div style="white-space:pre-wrap;line-height:1.7;color:var(--text-secondary)">'+j.description+'</div><div class="job-meta" style="margin-top:20px"><span><i class="fas fa-user"></i> <a onclick="navigate(\'user-profile\','+j.posted_by+')" style="cursor:pointer">'+(j.full_name||j.username)+'</a></span><span><i class="fas fa-clock"></i> '+timeAgo(j.created_at)+'</span></div></div>';
-      } catch(e){el.innerHTML='<div class="empty-state"><h3>Ilan bulunamadi</h3></div>';}
+      currentJobId = id;
+      const el = document.getElementById('jobDetailContent');
+      if (!el) return;
+      el.innerHTML = '<div class="spinner"></div>';
+      try {
+        const d = await api('/api/jobs/' + id);
+        const j = d.job;
+        const applyBtn = currentUser 
+          ? `<button class="btn btn-primary" onclick="showApplyModal(${j.id})"><i class="fas fa-paper-plane"></i> Başvur</button>`
+          : `<button class="btn btn-primary" onclick="showModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Giriş Yap ve Başvur</button>`;
+
+        el.innerHTML = `
+          <button class="btn btn-ghost btn-sm" onclick="navigate('jobs')" style="margin-bottom:16px"><i class="fas fa-arrow-left"></i> İlanlara Dön</button>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:flex-start">
+              <div>
+                <div class="job-company" style="font-size:1.05rem">${escapeHtml(j.company)}</div>
+                <h1 style="font-size:1.8rem;font-weight:800;margin:8px 0">${escapeHtml(j.title)}</h1>
+                <div class="job-meta">
+                  <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(j.location || '')}</span>
+                  <span class="badge-status badge-${j.work_type}">${j.work_type === 'remote' ? 'Remote' : j.work_type === 'hybrid' ? 'Hibrit' : 'Ofis'}</span>
+                  ${j.salary_range ? `<span><i class="fas fa-money-bill"></i> ${escapeHtml(j.salary_range)}</span>` : ''}
+                  <span><i class="fas fa-users"></i> ${j.application_count || 0} başvuru</span>
+                </div>
+              </div>
+              <div>${applyBtn}</div>
+            </div>
+            <hr style="border:none;border-top:1px solid var(--border-color);margin:24px 0">
+            <div style="white-space:pre-wrap;line-height:1.7;color:var(--text-secondary)">${escapeHtml(j.description)}</div>
+            <div class="job-meta" style="margin-top:24px">
+              <span><i class="fas fa-user"></i> <a onclick="navigate('user-profile', ${j.posted_by})">${escapeHtml(j.full_name || j.username)}</a></span>
+              <span><i class="fas fa-clock"></i> ${timeAgo(j.created_at)}</span>
+            </div>
+          </div>
+        `;
+      } catch (e) {
+        el.innerHTML = '<div class="empty-state"><h3>İlan bulunamadı</h3></div>';
+      }
     }
 
-    function showApplyModal(id,title){currentJobId=id;document.getElementById('applyJobTitle').textContent=title;document.getElementById('applyCoverLetter').value='';showModal('applyModal');}
-    async function applyToJob(){try{await api('/api/jobs/'+currentJobId+'/apply',{method:'POST',body:JSON.stringify({cover_letter:document.getElementById('applyCoverLetter').value})});hideModal('applyModal');toast('Basvurunuz gonderildi!');loadJobDetail(currentJobId);}catch(e){}}
+    function showApplyModal(id) {
+      currentJobId = id;
+      document.getElementById('applyCoverLetter').value = '';
+      showModal('applyModal');
+    }
 
-    async function postJob(){const b={title:document.getElementById('pjTitle').value,company:document.getElementById('pjCompany').value,description:document.getElementById('pjDesc').value,location:document.getElementById('pjLocation').value,work_type:document.getElementById('pjWorkType').value,sector:document.getElementById('pjSector').value,experience_level:document.getElementById('pjExp').value,salary_range:document.getElementById('pjSalary').value,deadline:document.getElementById('pjDeadline').value||null};if(!b.title||!b.company||!b.description)return toast('Zorunlu alanlari doldurun','error');try{const d=await api('/api/jobs',{method:'POST',body:JSON.stringify(b)});toast('Ilan yayinlandi!');navigate('job-detail',d.job.id);}catch(e){}}
+    async function applyToJob() {
+      try {
+        await api('/api/jobs/' + currentJobId + '/apply', {
+          method: 'POST',
+          body: JSON.stringify({ cover_letter: document.getElementById('applyCoverLetter').value })
+        });
+        hideModal('applyModal');
+        toast('Başvurunuz başarıyla iletildi!');
+        loadJobDetail(currentJobId);
+      } catch (e) {
+        toast(e.message || 'Başvuru yapılamadı', 'error');
+      }
+    }
 
-    async function loadForum(){try{const d=await api('/api/forum/categories');document.getElementById('forumCategories').innerHTML=d.categories.map(c=>'<div class="card forum-cat-card" onclick="loadForumPosts('+c.id+')"><div class="forum-cat-icon"><i class="fas fa-'+c.icon+'"></i></div><div class="forum-cat-info"><h3>'+c.name+'</h3><p>'+c.description+'</p><span style="font-size:0.75rem;color:var(--accent)">'+c.post_count+' konu</span></div></div>').join('');document.getElementById('npCategory').innerHTML=d.categories.map(c=>'<option value="'+c.id+'">'+c.name+'</option>').join('');}catch(e){}loadForumPosts();}
+    async function postJob() {
+      const b = {
+        title: document.getElementById('pjTitle').value.trim(),
+        company: document.getElementById('pjCompany').value.trim(),
+        description: document.getElementById('pjDesc').value.trim(),
+        location: document.getElementById('pjLocation').value.trim(),
+        work_type: document.getElementById('pjWorkType').value,
+        sector: document.getElementById('pjSector').value.trim(),
+        experience_level: document.getElementById('pjExp').value,
+        salary_range: document.getElementById('pjSalary').value.trim(),
+        deadline: document.getElementById('pjDeadline').value || null
+      };
 
-    async function loadForumPosts(catId){try{const p=catId?'?category_id='+catId:'';const d=await api('/api/forum/posts'+p);document.getElementById('forumPosts').innerHTML=d.posts.length?d.posts.map(p=>'<div class="card forum-post-card" style="margin-bottom:12px" onclick="navigate(\'forum-post\','+p.id+')"><div style="display:flex;gap:12px"><div class="comment-avatar">'+getInitial(p.full_name)+'</div><div style="flex:1"><div class="post-title">'+p.title+'</div><div class="post-excerpt">'+(p.content||'').substring(0,200)+'</div><div class="post-meta"><span><i class="fas fa-user"></i> '+(p.full_name||p.username)+'</span><span><i class="fas fa-tag"></i> '+p.category_name+'</span><span><i class="fas fa-heart"></i> '+p.likes_count+'</span><span><i class="fas fa-comment"></i> '+p.comment_count+'</span><span><i class="fas fa-clock"></i> '+timeAgo(p.created_at)+'</span></div></div></div></div>').join(''):'<div class="empty-state"><i class="fas fa-comments"></i><h3>Henuz konu yok</h3></div>';}catch(e){}}
+      if (!b.title || !b.company || !b.description) {
+        return toast('Lütfen zorunlu alanları doldurun', 'error');
+      }
 
-    async function loadForumPost(id){const el=document.getElementById('forumPostDetail');el.innerHTML='<div class="spinner"></div>';try{const d=await api('/api/forum/posts/'+id);const p=d.post;const commentBox=currentUser?'<div class="card" style="margin-bottom:20px"><div style="display:flex;gap:12px"><div class="comment-avatar">'+getInitial(currentUser.fullName)+'</div><div style="flex:1"><textarea class="form-input" id="commentInput" rows="3" placeholder="Yorum yazin..."></textarea><button class="btn btn-primary btn-sm" onclick="addComment('+p.id+')" style="margin-top:8px">Yorum Yap</button></div></div></div>':'';el.innerHTML='<button class="btn btn-ghost btn-sm" onclick="navigate(\'forum\')" style="margin-bottom:16px"><i class="fas fa-arrow-left"></i> Geri</button><div class="card" style="margin-bottom:24px"><div style="display:flex;gap:12px"><div class="comment-avatar" style="width:48px;height:48px;font-size:1.2rem">'+getInitial(p.full_name)+'</div><div style="flex:1"><h1 style="font-size:1.5rem;font-weight:800">'+p.title+'</h1><div class="post-meta" style="margin:6px 0 16px"><span><i class="fas fa-user"></i> '+(p.full_name||p.username)+'</span><span><i class="fas fa-tag"></i> '+p.category_name+'</span><span><i class="fas fa-clock"></i> '+timeAgo(p.created_at)+'</span></div><div style="white-space:pre-wrap;line-height:1.7;color:var(--text-secondary)">'+p.content+'</div><div style="margin-top:16px"><button class="like-btn" onclick="likePost('+p.id+')"><i class="fas fa-heart"></i> '+p.likes_count+' Begeni</button></div></div></div></div><h3 style="margin-bottom:16px">Yorumlar ('+d.comments.length+')</h3>'+commentBox+d.comments.map(cm=>'<div class="comment"><div class="comment-avatar">'+getInitial(cm.full_name)+'</div><div class="comment-body"><span class="comment-author">'+cm.full_name+'</span><span class="comment-time">'+timeAgo(cm.created_at)+'</span><div class="comment-text">'+cm.content+'</div></div></div>').join('');}catch(e){el.innerHTML='<div class="empty-state"><h3>Konu bulunamadi</h3></div>';}}
+      try {
+        const d = await api('/api/jobs', { method: 'POST', body: JSON.stringify(b) });
+        toast('İlanınız yayınlandı!');
+        navigate('job-detail', d.job.id);
+      } catch (e) {
+        toast(e.message || 'İlan yayınlanamadı', 'error');
+      }
+    }
 
-    async function addComment(pid){const i=document.getElementById('commentInput');if(!i.value.trim())return toast('Yorum bos olamaz','error');try{await api('/api/forum/posts/'+pid+'/comments',{method:'POST',body:JSON.stringify({content:i.value})});toast('Yorum eklendi!');loadForumPost(pid);}catch(e){}}
-    async function likePost(pid){if(!currentUser)return showModal('loginModal');try{const d=await api('/api/forum/posts/'+pid+'/like',{method:'POST'});toast(d.liked?'Begenildi!':'Begeni kaldirildi');loadForumPost(pid);}catch(e){}}
-    async function createForumPost(){const b={category_id:document.getElementById('npCategory').value,title:document.getElementById('npTitle').value,content:document.getElementById('npContent').value};if(!b.title||!b.content)return toast('Baslik ve icerik zorunlu','error');try{const d=await api('/api/forum/posts',{method:'POST',body:JSON.stringify(b)});hideModal('newPostModal');toast('Konu acildi!');navigate('forum-post',d.post.id);}catch(e){}}
+    async function loadMyApplications() {
+      const el = document.getElementById('myApplicationsList');
+      if (!el) return;
+      el.innerHTML = '<div class="spinner"></div>';
+      try {
+        const d = await api('/api/jobs/applications/my');
+        const apps = d.applications || [];
+        el.innerHTML = apps.length ? `
+          <div class="grid-2">
+            ${apps.map(a => `
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">${escapeHtml(a.title)}</div>
+                  <span class="badge-status badge-${a.status}">${a.status}</span>
+                </div>
+                <div class="job-company">${escapeHtml(a.company)}</div>
+                <div class="job-meta" style="margin-top:12px">
+                  <span><i class="fas fa-clock"></i> ${timeAgo(a.created_at)}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : '<div class="empty-state"><i class="fas fa-paper-plane"></i><h3>Henüz bir başvuru yapmadınız</h3></div>';
+      } catch (e) {
+        el.innerHTML = '<div class="empty-state"><h3>Başvurular yüklenemedi</h3></div>';
+      }
+    }
 
-    async function loadPeople(){document.getElementById('peopleList').innerHTML='<div class="spinner"></div>';try{const s=document.getElementById('peopleSearch').value;const d=await api('/api/profile'+(s?'?search='+encodeURIComponent(s):''));document.getElementById('peopleList').innerHTML=d.users.length?d.users.map(u=>'<div class="card" style="cursor:pointer;text-align:center" onclick="navigate(\'user-profile\','+u.id+')"><div class="profile-avatar" style="width:64px;height:64px;margin:0 auto 12px;font-size:1.5rem">'+getInitial(u.full_name||u.username)+'</div><h3 style="font-size:1rem;font-weight:700">'+(u.full_name||u.username)+'</h3><p style="font-size:0.8rem;color:var(--accent)">@'+u.username+'</p>'+(u.location?'<p style="font-size:0.8rem;color:var(--text-muted);margin-top:4px"><i class="fas fa-map-marker-alt"></i> '+u.location+'</p>':'')+'<div style="margin-top:8px">'+(u.skills||[]).slice(0,3).map(s=>'<span class="skill-tag">'+s+'</span>').join('')+'</div></div>').join(''):'<div class="empty-state"><i class="fas fa-users"></i><h3>Kullanici bulunamadi</h3></div>';}catch(e){}}
-    function searchPeople(){clearTimeout(window._pt);window._pt=setTimeout(loadPeople,300);}
+    async function loadForum() {
+      try {
+        const d = await api('/api/forum/categories');
+        const cats = d.categories || [];
+        const catEl = document.getElementById('forumCategories');
+        if (catEl) {
+          catEl.innerHTML = cats.map(c => `
+            <div class="card forum-cat-card" onclick="loadForumPosts(${c.id})">
+              <div class="forum-cat-icon"><i class="fas fa-${c.icon || 'comments'}"></i></div>
+              <div class="forum-cat-info">
+                <h3>${escapeHtml(c.name)}</h3>
+                <p>${escapeHtml(c.description || '')}</p>
+                <span style="font-size:0.75rem;color:var(--accent)">${c.post_count || 0} konu</span>
+              </div>
+            </div>
+          `).join('');
+        }
+        const npCat = document.getElementById('npCategory');
+        if (npCat) {
+          npCat.innerHTML = cats.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('');
+        }
+      } catch (e) {}
+      loadForumPosts();
+    }
 
-    async function loadMyProfile(){if(!currentUser)return navigate('home');try{const d=await api('/api/auth/me');const u=d.user;document.getElementById('profileContent').innerHTML='<div class="profile-header"><div class="profile-avatar">'+getInitial(u.full_name||u.username)+'</div><div class="profile-info"><h1>'+(u.full_name||u.username)+'</h1><div class="profile-username">@'+u.username+'</div>'+(u.bio?'<div class="profile-bio">'+u.bio+'</div>':'')+'<div class="profile-meta">'+(u.location?'<span><i class="fas fa-map-marker-alt"></i> '+u.location+'</span>':'')+'<span><i class="fas fa-envelope"></i> '+u.email+'</span></div></div></div><div style="display:flex;gap:12px;margin-bottom:24px"><button class="btn btn-primary" onclick="navigate(\'profile-edit\')"><i class="fas fa-edit"></i> Duzenle</button><button class="btn btn-secondary" onclick="navigate(\'cv-builder\')"><i class="fas fa-file-alt"></i> CV Olustur</button></div>'+((u.skills&&u.skills.length)?'<div class="card"><div class="card-title" style="margin-bottom:12px">Yetenekler</div><div>'+u.skills.map(s=>'<span class="skill-tag">'+s+'</span>').join('')+'</div></div>':'');}catch(e){}}
+    async function loadForumPosts(catId) {
+      try {
+        const p = catId ? '?category_id=' + catId : '';
+        const d = await api('/api/forum/posts' + p);
+        const posts = d.posts || [];
+        const el = document.getElementById('forumPosts');
+        if (el) {
+          el.innerHTML = posts.length ? posts.map(p => `
+            <div class="card forum-post-card" style="margin-bottom:12px" onclick="navigate('forum-post', ${p.id})">
+              <div style="display:flex;gap:12px">
+                <div class="comment-avatar">${getInitial(p.full_name || p.username)}</div>
+                <div style="flex:1">
+                  <div class="post-title">${escapeHtml(p.title)}</div>
+                  <div class="post-excerpt">${escapeHtml((p.content || '').substring(0, 200))}...</div>
+                  <div class="post-meta">
+                    <span><i class="fas fa-user"></i> ${escapeHtml(p.full_name || p.username)}</span>
+                    <span><i class="fas fa-tag"></i> ${escapeHtml(p.category_name || '')}</span>
+                    <span><i class="fas fa-heart"></i> ${p.likes_count || 0}</span>
+                    <span><i class="fas fa-comment"></i> ${p.comment_count || 0}</span>
+                    <span><i class="fas fa-clock"></i> ${timeAgo(p.created_at)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `).join('') : '<div class="empty-state"><i class="fas fa-comments"></i><h3>Henüz konu açılmamış</h3></div>';
+        }
+      } catch (e) {}
+    }
 
-    async function loadProfileEdit(){if(!currentUser)return;try{const d=await api('/api/auth/me');const u=d.user;document.getElementById('peFullName').value=u.full_name||'';document.getElementById('peBio').value=u.bio||'';document.getElementById('peLocation').value=u.location||'';document.getElementById('peLinkedin').value=u.linkedin_url||'';document.getElementById('peGithub').value=u.github_url||'';document.getElementById('peWebsite').value=u.website_url||'';document.getElementById('peSkills').value=(u.skills||[]).join(', ');}catch(e){}}
+    async function loadForumPost(id) {
+      const el = document.getElementById('forumPostDetail');
+      if (!el) return;
+      el.innerHTML = '<div class="spinner"></div>';
+      try {
+        const d = await api('/api/forum/posts/' + id);
+        const p = d.post;
+        const comments = d.comments || [];
+        const commentBox = currentUser ? `
+          <div class="card" style="margin-bottom:20px">
+            <div style="display:flex;gap:12px">
+              <div class="comment-avatar">${getInitial(currentUser.full_name || currentUser.username)}</div>
+              <div style="flex:1">
+                <textarea class="form-input" id="commentInput" rows="3" placeholder="Yorumunuzu yazın..."></textarea>
+                <button class="btn btn-primary btn-sm" onclick="addComment(${p.id})" style="margin-top:8px"><i class="fas fa-reply"></i> Yorum Yap</button>
+              </div>
+            </div>
+          </div>
+        ` : '';
 
-    async function updateProfile(){const sk=document.getElementById('peSkills').value;const skills=sk?sk.split(',').map(s=>s.trim()).filter(s=>s):[];try{await api('/api/profile/me',{method:'PUT',body:JSON.stringify({full_name:document.getElementById('peFullName').value,bio:document.getElementById('peBio').value,location:document.getElementById('peLocation').value,linkedin_url:document.getElementById('peLinkedin').value,github_url:document.getElementById('peGithub').value,website_url:document.getElementById('peWebsite').value,skills:skills})});toast('Profil guncellendi!');navigate('profile');}catch(e){}}
+        el.innerHTML = `
+          <button class="btn btn-ghost btn-sm" onclick="navigate('forum')" style="margin-bottom:16px"><i class="fas fa-arrow-left"></i> Foruma Dön</button>
+          <div class="card" style="margin-bottom:24px">
+            <div style="display:flex;gap:14px">
+              <div class="comment-avatar" style="width:48px;height:48px;font-size:1.2rem">${getInitial(p.full_name || p.username)}</div>
+              <div style="flex:1">
+                <h1 style="font-size:1.5rem;font-weight:800">${escapeHtml(p.title)}</h1>
+                <div class="post-meta" style="margin:6px 0 16px;display:flex;gap:16px;font-size:0.85rem;color:var(--text-muted)">
+                  <span><i class="fas fa-user"></i> ${escapeHtml(p.full_name || p.username)}</span>
+                  <span><i class="fas fa-tag"></i> ${escapeHtml(p.category_name || '')}</span>
+                  <span><i class="fas fa-clock"></i> ${timeAgo(p.created_at)}</span>
+                </div>
+                <div style="white-space:pre-wrap;line-height:1.7;color:var(--text-secondary)">${escapeHtml(p.content)}</div>
+                <div style="margin-top:18px">
+                  <button class="like-btn" onclick="likePost(${p.id})"><i class="fas fa-heart"></i> ${p.likes_count || 0} Beğeni</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 style="margin-bottom:16px">Yorumlar (${comments.length})</h3>
+          ${commentBox}
+          ${comments.map(cm => `
+            <div class="comment">
+              <div class="comment-avatar">${getInitial(cm.full_name || cm.username)}</div>
+              <div class="comment-body">
+                <div>
+                  <span class="comment-author">${escapeHtml(cm.full_name || cm.username)}</span>
+                  <span class="comment-time">${timeAgo(cm.created_at)}</span>
+                </div>
+                <div class="comment-text">${escapeHtml(cm.content)}</div>
+              </div>
+            </div>
+          `).join('')}
+        `;
+      } catch (e) {
+        el.innerHTML = '<div class="empty-state"><h3>Konu bulunamadı</h3></div>';
+      }
+    }
 
-    async function loadUserProfile(id){const el=document.getElementById('userProfileContent');el.innerHTML='<div class="spinner"></div>';try{const d=await api('/api/profile/'+id);const u=d.user;el.innerHTML='<div class="profile-header"><div class="profile-avatar">'+getInitial(u.full_name||u.username)+'</div><div class="profile-info"><h1>'+(u.full_name||u.username)+'</h1><div class="profile-username">@'+u.username+'</div>'+(u.bio?'<div class="profile-bio">'+u.bio+'</div>':'')+'<div class="profile-meta">'+(u.location?'<span><i class="fas fa-map-marker-alt"></i> '+u.location+'</span>':'')+'</div></div></div>'+((u.skills&&u.skills.length)?'<div class="card"><div class="card-title" style="margin-bottom:12px">Yetenekler</div><div>'+u.skills.map(s=>'<span class="skill-tag">'+s+'</span>').join('')+'</div></div>':'');}catch(e){el.innerHTML='<div class="empty-state"><h3>Bulunamadi</h3></div>';}}
+    async function addComment(pid) {
+      const input = document.getElementById('commentInput');
+      if (!input || !input.value.trim()) return toast('Yorum boş olamaz', 'error');
+      try {
+        await api('/api/forum/posts/' + pid + '/comments', {
+          method: 'POST',
+          body: JSON.stringify({ content: input.value.trim() })
+        });
+        toast('Yorumunuz eklendi!');
+        loadForumPost(pid);
+      } catch (e) {
+        toast(e.message || 'Yorum eklenemedi', 'error');
+      }
+    }
 
-    async function loadNotifications(){if(!currentUser)return;try{const d=await api('/api/notifications');document.getElementById('notificationsList').innerHTML=d.notifications.length?d.notifications.map(n=>'<div class="notif-item '+(n.is_read?'':'unread')+'" onclick="readNotif('+n.id+\',\\\'\'+n.link+'\\\')\"><div class="notif-icon" style="background:rgba(0,224,255,0.15);color:var(--accent)"><i class="fas fa-bell"></i></div><div class="notif-content"><p>'+n.message+'</p><div class="notif-time">'+timeAgo(n.created_at)+'</div></div></div>').join(''):'<div class="empty-state"><i class="fas fa-bell-slash"></i><h3>Bildirim yok</h3></div>';}catch(e){}}
-    async function readNotif(id,link){try{await api('/api/notifications/'+id+'/read',{method:'PUT'});}catch(e){}loadNotifCount();}
-    async function markAllRead(){try{await api('/api/notifications/read-all',{method:'PUT'});toast('Okundu');loadNotifications();loadNotifCount();}catch(e){}}
+    async function likePost(pid) {
+      if (!currentUser) return showModal('loginModal');
+      try {
+        const d = await api('/api/forum/posts/' + pid + '/like', { method: 'POST' });
+        toast(d.liked ? 'Beğenildi!' : 'Beğeni kaldırıldı');
+        loadForumPost(pid);
+      } catch (e) {
+        toast(e.message || 'İşlem başarısız', 'error');
+      }
+    }
 
-    async function loadCVBuilder(){if(!currentUser)return navigate('home');cvSectionCount=0;document.getElementById('cvBuilderContent').innerHTML='<div class="card" style="margin-bottom:20px"><h3 style="font-weight:700;margin-bottom:16px"><i class="fas fa-plus-circle" style="color:var(--accent)"></i> Yeni CV</h3><div class="form-group"><label class="form-label">CV Adi</label><input class="form-input" id="cvName" placeholder="Ornegin: Yazilim CV"></div><div id="cvSections"></div><button class="btn btn-secondary btn-sm" onclick="addCVSection()" style="margin-bottom:16px"><i class="fas fa-plus"></i> Bolum Ekle</button><button class="btn btn-primary" onclick="saveCV()" style="width:100%;justify-content:center"><i class="fas fa-save"></i> Kaydet</button></div><div id="myCVs"></div>';addCVSection();loadMyCVs();}
+    async function createForumPost() {
+      const b = {
+        category_id: document.getElementById('npCategory').value,
+        title: document.getElementById('npTitle').value.trim(),
+        content: document.getElementById('npContent').value.trim()
+      };
+      if (!b.title || !b.content) return toast('Başlık ve içerik alanları zorunludur', 'error');
+      try {
+        const d = await api('/api/forum/posts', { method: 'POST', body: JSON.stringify(b) });
+        hideModal('newPostModal');
+        toast('Konu başarıyla açıldı!');
+        navigate('forum-post', d.post.id);
+      } catch (e) {
+        toast(e.message || 'Konu açılamadı', 'error');
+      }
+    }
 
-    function addCVSection(){cvSectionCount++;const d=document.createElement('div');d.className='card';d.style.marginBottom='12px';d.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:12px"><select class="form-input" style="width:auto" id="secType'+cvSectionCount+'"><option value="experience">Deneyim</option><option value="education">Egitim</option><option value="project">Proje</option><option value="certificate">Sertifika</option></select><button class="btn btn-ghost btn-sm" onclick="this.parentElement.parentElement.remove()"><i class="fas fa-trash" style="color:var(--danger)"></i></button></div><div class="form-group"><input class="form-input" id="secTitle'+cvSectionCount+'" placeholder="Baslik"></div><div class="form-group"><input class="form-input" id="secSubtitle'+cvSectionCount+'" placeholder="Alt baslik"></div><div class="form-group"><input class="form-input" id="secDate'+cvSectionCount+'" placeholder="Tarih"></div><div class="form-group"><textarea class="form-input" id="secDesc'+cvSectionCount+'" rows="3" placeholder="Aciklama"></textarea></div>';document.getElementById('cvSections').appendChild(d);}
+    async function loadPeople() {
+      const el = document.getElementById('peopleList');
+      if (!el) return;
+      el.innerHTML = '<div class="spinner"></div>';
+      try {
+        const s = document.getElementById('peopleSearch')?.value || '';
+        const d = await api('/api/profile' + (s ? '?search=' + encodeURIComponent(s) : ''));
+        const users = d.users || [];
+        el.innerHTML = users.length ? users.map(u => `
+          <div class="card" style="cursor:pointer;text-align:center" onclick="navigate('user-profile', ${u.id})">
+            <div class="profile-avatar" style="width:64px;height:64px;margin:0 auto 12px;font-size:1.5rem">${getInitial(u.full_name || u.username)}</div>
+            <h3 style="font-size:1rem;font-weight:700">${escapeHtml(u.full_name || u.username)}</h3>
+            <p style="font-size:0.8rem;color:var(--accent)">@${escapeHtml(u.username)}</p>
+            ${u.location ? `<p style="font-size:0.8rem;color:var(--text-muted);margin-top:4px"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(u.location)}</p>` : ''}
+            <div style="margin-top:8px">${(u.skills || []).slice(0, 3).map(sk => `<span class="skill-tag">${escapeHtml(sk)}</span>`).join('')}</div>
+          </div>
+        `).join('') : '<div class="empty-state"><i class="fas fa-users"></i><h3>Kullanıcı bulunamadı</h3></div>';
+      } catch (e) {
+        el.innerHTML = '<div class="empty-state"><h3>Kullanıcılar yüklenemedi</h3></div>';
+      }
+    }
 
-    async function saveCV(){const secs=[];document.querySelectorAll('#cvSections .card').forEach(card=>{const idx=card.querySelector('select')?.id?.replace('secType','');if(!idx)return;secs.push({type:document.getElementById('secType'+idx)?.value,title:document.getElementById('secTitle'+idx)?.value,subtitle:document.getElementById('secSubtitle'+idx)?.value,date:document.getElementById('secDate'+idx)?.value,description:document.getElementById('secDesc'+idx)?.value});});try{await api('/api/cv',{method:'POST',body:JSON.stringify({template_name:document.getElementById('cvName').value||'classic',sections:secs})});toast('CV kaydedildi!');loadMyCVs();}catch(e){}}
+    function searchPeople() {
+      clearTimeout(window._pt);
+      window._pt = setTimeout(loadPeople, 300);
+    }
 
-    async function loadMyCVs(){try{const d=await api('/api/cv/my');const el=document.getElementById('myCVs');if(d.profiles.length){el.innerHTML='<h3 style="font-weight:700;margin-bottom:16px">Kayitli CVlerim</h3>'+d.profiles.map(cv=>'<div class="card" style="margin-bottom:12px"><div style="display:flex;justify-content:space-between"><div><strong>'+(cv.template_name||'CV')+'</strong><span style="color:var(--text-muted);margin-left:12px;font-size:0.8rem">'+timeAgo(cv.created_at)+'</span></div><button class="btn btn-danger btn-sm" onclick="deleteCV('+cv.id+')"><i class="fas fa-trash"></i></button></div></div>').join('');}else{el.innerHTML='';}}catch(e){}}
-    async function deleteCV(id){if(!confirm('Silinsin mi?'))return;try{await api('/api/cv/'+id,{method:'DELETE'});toast('Silindi');loadMyCVs();}catch(e){}}
+    async function loadMyProfile() {
+      if (!currentUser) return navigate('home');
+      const el = document.getElementById('profileContent');
+      if (!el) return;
+      try {
+        const d = await api('/api/auth/me');
+        const u = d.user;
+        el.innerHTML = `
+          <div class="profile-header">
+            <div class="profile-avatar">${getInitial(u.full_name || u.username)}</div>
+            <div class="profile-info">
+              <h1>${escapeHtml(u.full_name || u.username)}</h1>
+              <div class="profile-username">@${escapeHtml(u.username)}</div>
+              ${u.bio ? `<div class="profile-bio">${escapeHtml(u.bio)}</div>` : ''}
+              <div class="profile-meta">
+                ${u.location ? `<span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(u.location)}</span>` : ''}
+                <span><i class="fas fa-envelope"></i> ${escapeHtml(u.email)}</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;margin-bottom:24px">
+            <button class="btn btn-primary" onclick="navigate('profile-edit')"><i class="fas fa-edit"></i> Profili Düzenle</button>
+            <button class="btn btn-secondary" onclick="navigate('cv-builder')"><i class="fas fa-file-alt"></i> CV Oluşturucu</button>
+          </div>
+          ${(u.skills && u.skills.length) ? `
+            <div class="card">
+              <div class="card-title" style="margin-bottom:12px">Yetenekler</div>
+              <div>${u.skills.map(s => `<span class="skill-tag">${escapeHtml(s)}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+        `;
+      } catch (e) {}
+    }
 
-    document.addEventListener('click',e=>{const m=document.getElementById('userMenu');const a=document.getElementById('navAvatar');if(!m.contains(e.target)&&e.target!==a)m.classList.remove('show');});
+    async function loadProfileEdit() {
+      if (!currentUser) return;
+      try {
+        const d = await api('/api/auth/me');
+        const u = d.user;
+        document.getElementById('peFullName').value = u.full_name || '';
+        document.getElementById('peBio').value = u.bio || '';
+        document.getElementById('peLocation').value = u.location || '';
+        document.getElementById('peLinkedin').value = u.linkedin_url || '';
+        document.getElementById('peGithub').value = u.github_url || '';
+        document.getElementById('peWebsite').value = u.website_url || '';
+        document.getElementById('peSkills').value = (u.skills || []).join(', ');
+      } catch (e) {}
+    }
 
+    async function updateProfile() {
+      const sk = document.getElementById('peSkills').value;
+      const skills = sk ? sk.split(',').map(s => s.trim()).filter(Boolean) : [];
+      try {
+        await api('/api/profile/me', {
+          method: 'PUT',
+          body: JSON.stringify({
+            full_name: document.getElementById('peFullName').value.trim(),
+            bio: document.getElementById('peBio').value.trim(),
+            location: document.getElementById('peLocation').value.trim(),
+            linkedin_url: document.getElementById('peLinkedin').value.trim(),
+            github_url: document.getElementById('peGithub').value.trim(),
+            website_url: document.getElementById('peWebsite').value.trim(),
+            skills: skills
+          })
+        });
+        toast('Profiliniz güncellendi!');
+        navigate('profile');
+      } catch (e) {
+        toast(e.message || 'Güncellenemedi', 'error');
+      }
+    }
+
+    async function loadUserProfile(id) {
+      const el = document.getElementById('userProfileContent');
+      if (!el) return;
+      el.innerHTML = '<div class="spinner"></div>';
+      try {
+        const d = await api('/api/profile/' + id);
+        const u = d.user;
+        el.innerHTML = `
+          <button class="btn btn-ghost btn-sm" onclick="navigate('people')" style="margin-bottom:16px"><i class="fas fa-arrow-left"></i> Kişilere Dön</button>
+          <div class="profile-header">
+            <div class="profile-avatar">${getInitial(u.full_name || u.username)}</div>
+            <div class="profile-info">
+              <h1>${escapeHtml(u.full_name || u.username)}</h1>
+              <div class="profile-username">@${escapeHtml(u.username)}</div>
+              ${u.bio ? `<div class="profile-bio">${escapeHtml(u.bio)}</div>` : ''}
+              <div class="profile-meta">
+                ${u.location ? `<span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(u.location)}</span>` : ''}
+              </div>
+            </div>
+          </div>
+          ${(u.skills && u.skills.length) ? `
+            <div class="card">
+              <div class="card-title" style="margin-bottom:12px">Yetenekler</div>
+              <div>${u.skills.map(s => `<span class="skill-tag">${escapeHtml(s)}</span>`).join('')}</div>
+            </div>
+          ` : ''}
+        `;
+      } catch (e) {
+        el.innerHTML = '<div class="empty-state"><h3>Kullanıcı bulunamadı</h3></div>';
+      }
+    }
+
+    async function loadNotifications() {
+      if (!currentUser) return;
+      const el = document.getElementById('notificationsList');
+      if (!el) return;
+      try {
+        const d = await api('/api/notifications');
+        const list = d.notifications || [];
+        el.innerHTML = list.length ? list.map(n => `
+          <div class="notif-item ${n.is_read ? '' : 'unread'}" onclick="readNotif(${n.id})">
+            <div class="notif-icon" style="background:rgba(0,224,255,0.15);color:var(--accent)"><i class="fas fa-bell"></i></div>
+            <div class="notif-content">
+              <p>${escapeHtml(n.message)}</p>
+              <div class="notif-time">${timeAgo(n.created_at)}</div>
+            </div>
+          </div>
+        `).join('') : '<div class="empty-state"><i class="fas fa-bell-slash"></i><h3>Bildiriminiz bulunmuyor</h3></div>';
+      } catch (e) {}
+    }
+
+    async function readNotif(id) {
+      try {
+        await api('/api/notifications/' + id + '/read', { method: 'PUT' });
+      } catch (e) {}
+      loadNotifCount();
+    }
+
+    async function markAllRead() {
+      try {
+        await api('/api/notifications/read-all', { method: 'PUT' });
+        toast('Tüm bildirimler okundu olarak işaretlendi');
+        loadNotifications();
+        loadNotifCount();
+      } catch (e) {
+        toast('İşlem başarısız', 'error');
+      }
+    }
+
+    async function loadCVBuilder() {
+      if (!currentUser) return navigate('home');
+      cvSectionCount = 0;
+      const el = document.getElementById('cvBuilderContent');
+      if (!el) return;
+      el.innerHTML = `
+        <div class="card" style="margin-bottom:24px">
+          <h3 style="font-weight:700;margin-bottom:16px"><i class="fas fa-plus-circle" style="color:var(--accent)"></i> Yeni CV</h3>
+          <div class="form-group"><label class="form-label">CV Adı</label><input class="form-input" id="cvName" placeholder="Örn: Yazılım Mühendisi CV"></div>
+          <div id="cvSections"></div>
+          <button class="btn btn-secondary btn-sm" onclick="addCVSection()" style="margin-bottom:16px"><i class="fas fa-plus"></i> Bölüm Ekle</button>
+          <button class="btn btn-primary" onclick="saveCV()" style="width:100%;justify-content:center"><i class="fas fa-save"></i> CV'yi Kaydet</button>
+        </div>
+        <div id="myCVs"></div>
+      `;
+      addCVSection();
+      loadMyCVs();
+    }
+
+    function addCVSection() {
+      cvSectionCount++;
+      const d = document.createElement('div');
+      d.className = 'card';
+      d.style.marginBottom = '12px';
+      d.innerHTML = `
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+          <select class="form-input" style="width:auto" id="secType${cvSectionCount}">
+            <option value="experience">Deneyim</option>
+            <option value="education">Eğitim</option>
+            <option value="project">Proje</option>
+            <option value="certificate">Sertifika</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" onclick="this.closest('.card').remove()"><i class="fas fa-trash" style="color:var(--danger)"></i></button>
+        </div>
+        <div class="form-group"><input class="form-input" id="secTitle${cvSectionCount}" placeholder="Başlık / Pozisyon"></div>
+        <div class="form-group"><input class="form-input" id="secSubtitle${cvSectionCount}" placeholder="Şirket / Okul / Kurum"></div>
+        <div class="form-group"><input class="form-input" id="secDate${cvSectionCount}" placeholder="Tarih aralığı (Örn: 2021 - 2024)"></div>
+        <div class="form-group"><textarea class="form-input" id="secDesc${cvSectionCount}" rows="3" placeholder="Açıklama ve detaylar"></textarea></div>
+      `;
+      document.getElementById('cvSections').appendChild(d);
+    }
+
+    async function saveCV() {
+      const secs = [];
+      document.querySelectorAll('#cvSections .card').forEach(card => {
+        const sel = card.querySelector('select');
+        const idx = sel?.id?.replace('secType', '');
+        if (!idx) return;
+        secs.push({
+          type: document.getElementById('secType' + idx)?.value,
+          title: document.getElementById('secTitle' + idx)?.value,
+          subtitle: document.getElementById('secSubtitle' + idx)?.value,
+          date: document.getElementById('secDate' + idx)?.value,
+          description: document.getElementById('secDesc' + idx)?.value
+        });
+      });
+
+      try {
+        await api('/api/cv', {
+          method: 'POST',
+          body: JSON.stringify({
+            template_name: document.getElementById('cvName').value || 'Klasik Şablon',
+            sections: secs
+          })
+        });
+        toast('CV başarıyla kaydedildi!');
+        loadMyCVs();
+      } catch (e) {
+        toast(e.message || 'Kaydedilemedi', 'error');
+      }
+    }
+
+    async function loadMyCVs() {
+      try {
+        const d = await api('/api/cv/my');
+        const el = document.getElementById('myCVs');
+        if (!el) return;
+        const profiles = d.profiles || [];
+        if (profiles.length) {
+          el.innerHTML = '<h3 style="font-weight:700;margin-bottom:16px">Kayıtlı CV\'lerim</h3>' + profiles.map(cv => `
+            <div class="card" style="margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <strong>${escapeHtml(cv.template_name || 'CV')}</strong>
+                  <span style="color:var(--text-muted);margin-left:12px;font-size:0.8rem">${timeAgo(cv.created_at)}</span>
+                </div>
+                <button class="btn btn-danger btn-sm" onclick="deleteCV(${cv.id})"><i class="fas fa-trash"></i> Sil</button>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          el.innerHTML = '';
+        }
+      } catch (e) {}
+    }
+
+    async function deleteCV(id) {
+      if (!confirm('Bu CV silinsin mi?')) return;
+      try {
+        await api('/api/cv/' + id, { method: 'DELETE' });
+        toast('CV silindi');
+        loadMyCVs();
+      } catch (e) {
+        toast('Silinemedi', 'error');
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Global document listeners
+    document.addEventListener('click', e => {
+      const m = document.getElementById('userMenu');
+      const a = document.getElementById('navAvatar');
+      if (m && a && !m.contains(e.target) && e.target !== a) {
+        m.classList.remove('show');
+      }
+    });
+
+    // Initialize application
     checkAuth();
     loadHome();
   </script>
