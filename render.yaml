@@ -31,10 +31,10 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: CORS_ORIGIN
-        value: "https://cv-frontend-lk0h.onrender.com"
+        value: "https://ozan-yurdakul.onrender.com"
 
   - type: web
-    name: cv-frontend
+    name: ozan-yurdakul
     env: docker
     dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
