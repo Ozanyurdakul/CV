@@ -27,9 +27,9 @@ services:
       - key: PORT
         value: "5000"
       - key: ADMIN_USERNAME
-        value: "Ozan"
+        sync: false
       - key: ADMIN_PASSWORD
-        value: "Ozan.980"
+        sync: false
       - key: CORS_ORIGIN
         value: "https://cv-frontend-lk0h.onrender.com"
 
