@@ -13,7 +13,7 @@ if (!JWT_SECRET) {
     console.warn("DIKKAT: JWT_SECRET tanımlanmamış! Çevre değişkenlerini kontrol edin.");
 }
 
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_ORIGIN || '*', credentials: true }));
 app.use(express.json());
 
 

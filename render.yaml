@@ -29,6 +29,8 @@ services:
         value: "admin"
       - key: ADMIN_PASSWORD
         generateValue: true
+      - key: CORS_ORIGIN
+        value: "https://cv-frontend.onrender.com"
 
   - type: web
     name: cv-frontend
@@ -36,16 +38,8 @@ services:
     dockerfilePath: ./frontend/Dockerfile
     plan: free
     envVars:
-      - key: BACKEND_HOST
-        fromService:
-          type: web
-          name: cv-backend
-          property: host
-      - key: BACKEND_PORT
-        fromService:
-          type: web
-          name: cv-backend
-          property: port
+      - key: BACKEND_URL
+        value: "https://cv-backend.onrender.com"
 
 databases:
   - name: cv-db
