@@ -59,11 +59,11 @@ const initDB = async () => {
     
     const adminUser = process.env.ADMIN_USERNAME || 'admin';
     const adminPass = process.env.ADMIN_PASSWORD || 'admin';
-    const adminCheck = await pool.query("SELECT * FROM users WHERE username = ", [adminUser]);
+    const adminCheck = await pool.query("SELECT * FROM users WHERE username = $1", [adminUser]);
     if (adminCheck.rows.length === 0) {
       const hash = await bcrypt.hash(adminPass, 10);
       await pool.query(
-        "INSERT INTO users (username, password_hash, is_admin) VALUES (, , )",
+        "INSERT INTO users (username, password_hash, is_admin) VALUES ($1, $2, $3)",
         [adminUser, hash, true]
       );
     }
