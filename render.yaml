@@ -40,7 +40,7 @@ services:
         fromService:
           type: web
           name: cv-backend
-          envVar: RENDER_INTERNAL_URL
+          envVarKey: RENDER_INTERNAL_URL
 
 databases:
   - name: cv-db
