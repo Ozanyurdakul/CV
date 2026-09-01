@@ -27,11 +27,11 @@ services:
       - key: PORT
         value: "5000"
       - key: ADMIN_USERNAME
-        value: "admin"
+        value: "Ozan"
       - key: ADMIN_PASSWORD
-        generateValue: true
+        value: "Ozan.980"
       - key: CORS_ORIGIN
-        value: "https://cv-frontend.onrender.com"
+        value: "https://cv-frontend-lk0h.onrender.com"
 
   - type: web
     name: cv-frontend
@@ -41,7 +41,7 @@ services:
     plan: free
     envVars:
       - key: BACKEND_URL
-        value: "https://cv-backend.onrender.com"
+        value: "https://cv-backend-8gpl.onrender.com"
 
 databases:
   - name: cv-db
