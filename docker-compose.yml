@@ -33,7 +33,8 @@ services:
     build: ./frontend
     container_name: devops_frontend
     environment:
-      BACKEND_URL: http://backend:5000
+      BACKEND_HOST: backend
+      BACKEND_PORT: 5000
     ports:
       - "80:80"
     depends_on:
