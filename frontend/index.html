@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ozan Yurdakul | Kariyer Platformu</title>
+  <title>Kariyerim.com</title>
   <meta name="description" content="Profilinizi oluşturun, iş ilanlarına başvurun, CV'nizi paylaşın ve forumda kariyerinizi geliştirin.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -219,12 +219,13 @@
     .like-btn:hover, .like-btn.liked { color: var(--danger); background: rgba(239,68,68,0.1); }
     .like-btn.liked i { font-weight: 900; }
   </style>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
-    <div class="nav-brand" onclick="navigate('home')"><i class="fas fa-rocket"></i><span>KariyerNet</span></div>
+    <div class="nav-brand" onclick="navigate('home')"><i class="fas fa-rocket"></i><span>Kariyerim.com</span></div>
     <div class="nav-links" id="navLinks">
       <a class="nav-link active" onclick="navigate('home')" id="nav-home"><i class="fas fa-home"></i> Ana Sayfa</a>
       <a class="nav-link" onclick="navigate('jobs')" id="nav-jobs"><i class="fas fa-briefcase"></i> İş İlanları</a>
@@ -599,6 +600,56 @@
         toast('Hoş geldiniz, ' + (currentUser.full_name || currentUser.username) + '!');
       } catch (e) {
         toast(e.message || 'Giriş yapılamadı', 'error');
+      }
+    }
+
+    
+    async function handleGoogleLogin(response) {
+      try {
+        // Decode payload just to get info
+        const payload = JSON.parse(atob(response.credential.split('.')[1]));
+        const d = await api('/api/auth/google', {
+          method: 'POST',
+          body: JSON.stringify({ token: response.credential, userProfile: { email: payload.email, name: payload.name, picture: payload.picture } })
+        });
+        token = d.token;
+        currentUser = d.user;
+        localStorage.setItem('token', token);
+        hideModal('loginModal');
+        hideModal('registerModal');
+        updateUI();
+        loadHome();
+        toast('Google ile giris basarili!');
+      } catch (e) {
+        toast(e.message || 'Google giris hatasi', 'error');
+      }
+    }
+
+    async function sendOtp() {
+      const fn=document.getElementById('regFullName').value,u=document.getElementById('regUsername').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPassword').value;
+      if(!u||!e||!p||!fn)return toast('Zorunlu alanlari doldurun','error');
+      try {
+        await api('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ email: e }) });
+        document.getElementById('regStep1').style.display = 'none';
+        document.getElementById('regStep2').style.display = 'block';
+        toast('Dogrulama kodu email adresinize gonderildi (Konsolu kontrol edin)');
+      } catch (e) {
+        toast(e.message || 'Kod gonderilemedi', 'error');
+      }
+    }
+
+    async function registerWithOtp() {
+      const fn=document.getElementById('regFullName').value,u=document.getElementById('regUsername').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPassword').value, otp=document.getElementById('regOtp').value;
+      if(!otp)return toast('Dogrulama kodunu girin','error');
+      try {
+        const d = await api('/api/auth/register-otp',{method:'POST',body:JSON.stringify({username:u,email:e,password:p,full_name:fn, otp:otp})}); 
+        token=d.token;currentUser=d.user;localStorage.setItem('token',token);
+        hideModal('registerModal');
+        document.getElementById('regStep1').style.display = 'block';
+        document.getElementById('regStep2').style.display = 'none';
+        updateUI();loadHome();toast('Kayit basarili!');
+      } catch(e) {
+        toast(e.message || 'Kayit hatasi', 'error');
       }
     }
 
