@@ -1491,8 +1491,7 @@
                         <div class="cv-preview-item-date">${escapeHtml(it.date)}</div>
                     </div>
                     <div class="cv-preview-item-subtitle">${escapeHtml(it.subtitle)}</div>
-                    <div class="cv-preview-item-desc">${escapeHtml(it.desc).replace(/
-/g, '<br>')}</div>
+                    <div class="cv-preview-item-desc">${escapeHtml(it.desc).replace(/\\n/g, '<br>')}</div>
                 </div>`;
             });
             container.innerHTML += h;
