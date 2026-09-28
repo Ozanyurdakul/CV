@@ -218,7 +218,71 @@
     .like-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: var(--transition); padding: 6px 12px; border-radius: var(--radius-sm); }
     .like-btn:hover, .like-btn.liked { color: var(--danger); background: rgba(239,68,68,0.1); }
     .like-btn.liked i { font-weight: 900; }
-  </style>
+  
+/* CV Builder Premium UI */
+.cv-builder-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .cv-builder-container { grid-template-columns: 1fr; }
+}
+.cv-editor {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.cv-preview {
+    background: #fff;
+    color: #1a1a2e;
+    border-radius: 8px;
+    padding: 32px;
+    min-height: 800px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 80px;
+}
+.cv-preview-header {
+    border-bottom: 2px solid #00e0ff;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+}
+.cv-preview-name { font-size: 28px; font-weight: 800; color: #1a1a2e; margin: 0; }
+.cv-preview-title { font-size: 16px; color: #666; margin-top: 4px; }
+.cv-preview-contact { font-size: 12px; color: #888; display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+.cv-preview-section-title {
+    font-size: 18px; font-weight: 700; color: #1a1a2e;
+    margin: 24px 0 12px 0; text-transform: uppercase; letter-spacing: 1px;
+}
+.cv-preview-item { margin-bottom: 16px; }
+.cv-preview-item-header { display: flex; justify-content: space-between; align-items: baseline; }
+.cv-preview-item-title { font-weight: 700; font-size: 15px; }
+.cv-preview-item-date { font-size: 12px; color: #888; }
+.cv-preview-item-subtitle { font-size: 14px; color: #555; font-style: italic; margin-bottom: 4px; }
+.cv-preview-item-desc { font-size: 13px; color: #444; line-height: 1.5; }
+
+.section-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+.section-card:hover { border-color: var(--accent); }
+
+@media print {
+    body * { visibility: hidden; }
+    #cvLivePreview, #cvLivePreview * { visibility: visible; }
+    #cvLivePreview { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; padding: 0; }
+    .cv-builder-container { display: block; }
+}
+
+</style>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
@@ -1262,43 +1326,140 @@
       const el = document.getElementById('cvBuilderContent');
       if (!el) return;
       el.innerHTML = `
-        <div class="card" style="margin-bottom:24px">
-          <h3 style="font-weight:700;margin-bottom:16px"><i class="fas fa-plus-circle" style="color:var(--accent)"></i> Yeni CV</h3>
-          <div class="form-group"><label class="form-label">CV Adı</label><input class="form-input" id="cvName" placeholder="Örn: Yazılım Mühendisi CV"></div>
-          <div id="cvSections"></div>
-          <button class="btn btn-secondary btn-sm" onclick="addCVSection()" style="margin-bottom:16px"><i class="fas fa-plus"></i> Bölüm Ekle</button>
-          <button class="btn btn-primary" onclick="saveCV()" style="width:100%;justify-content:center"><i class="fas fa-save"></i> CV'yi Kaydet</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+            <h2 style="font-weight:800; font-size:28px; background: linear-gradient(90deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CV Stüdyosu</h2>
+            <button class="btn btn-primary" onclick="window.print()"><i class="fas fa-print"></i> PDF Olarak İndir</button>
         </div>
-        <div id="myCVs"></div>
+        
+        <div class="cv-builder-container">
+            <!-- Left: Editor -->
+            <div class="cv-editor">
+                <h3 style="margin-bottom:16px; font-weight:700;"><i class="fas fa-edit" style="color:var(--accent)"></i> Bilgilerinizi Girin</h3>
+                
+                <div class="form-group">
+                    <label class="form-label">Ad Soyad</label>
+                    <input class="form-input" id="cvNameInput" placeholder="Adınız Soyadınız" value="${currentUser.full_name || currentUser.username}" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Meslek / Ünvan</label>
+                    <input class="form-input" id="cvTitleInput" placeholder="Örn: Senior Yazılım Geliştirici" value="${currentUser.title || ''}" oninput="updatePreview()">
+                </div>
+                
+                <div style="display:flex; gap:16px; margin-bottom:16px;">
+                    <div class="form-group" style="flex:1">
+                        <label class="form-label">E-posta</label>
+                        <input class="form-input" id="cvEmailInput" value="${currentUser.email || ''}" oninput="updatePreview()">
+                    </div>
+                    <div class="form-group" style="flex:1">
+                        <label class="form-label">Telefon</label>
+                        <input class="form-input" id="cvPhoneInput" placeholder="555 123 4567" oninput="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">CV Şablon Adı (Sistem için)</label>
+                    <input class="form-input" id="cvName" placeholder="Örn: Yazılımcı Başvurusu">
+                </div>
+
+                <div style="margin: 24px 0 12px 0; font-weight:700; font-size:18px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">Bölümler</div>
+                
+                <div id="cvSections"></div>
+                
+                <button class="btn btn-secondary" onclick="addCVSection()" style="width:100%; margin-bottom:16px; background:rgba(0,224,255,0.1); color:var(--accent); border:1px dashed var(--accent);">
+                    <i class="fas fa-plus"></i> Yeni Bölüm Ekle
+                </button>
+                
+                <button class="btn btn-primary" onclick="saveCV()" style="width:100%; justify-content:center; padding:14px; font-size:16px;">
+                    <i class="fas fa-save"></i> CV'yi Kaydet
+                </button>
+            </div>
+            
+            <!-- Right: Live Preview -->
+            <div class="cv-preview" id="cvLivePreview">
+                <div class="cv-preview-header">
+                    <div class="cv-preview-name" id="prevName">Ad Soyad</div>
+                    <div class="cv-preview-title" id="prevTitle">Meslek / Ünvan</div>
+                    <div class="cv-preview-contact">
+                        <span id="prevEmail"><i class="fas fa-envelope"></i> email@adres.com</span>
+                        <span id="prevPhone"><i class="fas fa-phone"></i> Telefon</span>
+                    </div>
+                </div>
+                <div id="prevSectionsContainer"></div>
+            </div>
+        </div>
+        
+        <div id="myCVs" style="margin-top:40px;"></div>
       `;
       addCVSection();
+      updatePreview();
       loadMyCVs();
     }
 
     function addCVSection() {
       cvSectionCount++;
       const d = document.createElement('div');
-      d.className = 'card';
-      d.style.marginBottom = '12px';
+      d.className = 'section-card';
       d.innerHTML = `
         <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-          <select class="form-input" style="width:auto" id="secType${cvSectionCount}">
-            <option value="experience">Deneyim</option>
-            <option value="education">Eğitim</option>
-            <option value="project">Proje</option>
-            <option value="certificate">Sertifika</option>
+          <select class="form-input" style="width:auto; font-weight:700;" id="secType${cvSectionCount}" onchange="updatePreview()">
+            <option value="Deneyim">💼 Deneyim</option>
+            <option value="Eğitim">🎓 Eğitim</option>
+            <option value="Proje">🚀 Proje</option>
+            <option value="Sertifika">📜 Sertifika</option>
           </select>
-          <button class="btn btn-ghost btn-sm" onclick="this.closest('.card').remove()"><i class="fas fa-trash" style="color:var(--danger)"></i></button>
+          <button class="btn btn-ghost btn-sm" onclick="this.closest('.section-card').remove(); updatePreview();"><i class="fas fa-trash" style="color:var(--danger)"></i></button>
         </div>
-        <div class="form-group"><input class="form-input" id="secTitle${cvSectionCount}" placeholder="Başlık / Pozisyon"></div>
-        <div class="form-group"><input class="form-input" id="secSubtitle${cvSectionCount}" placeholder="Şirket / Okul / Kurum"></div>
-        <div class="form-group"><input class="form-input" id="secDate${cvSectionCount}" placeholder="Tarih aralığı (Örn: 2021 - 2024)"></div>
-        <div class="form-group"><textarea class="form-input" id="secDesc${cvSectionCount}" rows="3" placeholder="Açıklama ve detaylar"></textarea></div>
+        <div class="form-group"><input class="form-input" id="secTitle${cvSectionCount}" placeholder="Başlık / Pozisyon (Örn: Frontend Dev)" oninput="updatePreview()"></div>
+        <div class="form-group"><input class="form-input" id="secSubtitle${cvSectionCount}" placeholder="Şirket / Okul (Örn: Google)" oninput="updatePreview()"></div>
+        <div class="form-group"><input class="form-input" id="secDate${cvSectionCount}" placeholder="Tarih aralığı (Örn: 2021 - Günümüz)" oninput="updatePreview()"></div>
+        <div class="form-group"><textarea class="form-input" id="secDesc${cvSectionCount}" rows="3" placeholder="Açıklama, başarılar..." oninput="updatePreview()"></textarea></div>
       `;
       document.getElementById('cvSections').appendChild(d);
+      updatePreview();
     }
 
-    async function saveCV() {
+    function updatePreview() {
+        document.getElementById('prevName').textContent = document.getElementById('cvNameInput')?.value || 'Ad Soyad';
+        document.getElementById('prevTitle').textContent = document.getElementById('cvTitleInput')?.value || 'Meslek / Ünvan';
+        document.getElementById('prevEmail').innerHTML = '<i class="fas fa-envelope"></i> ' + escapeHtml(document.getElementById('cvEmailInput')?.value || 'email@adres.com');
+        document.getElementById('prevPhone').innerHTML = '<i class="fas fa-phone"></i> ' + escapeHtml(document.getElementById('cvPhoneInput')?.value || 'Telefon');
+        
+        const container = document.getElementById('prevSectionsContainer');
+        container.innerHTML = '';
+        
+        const groups = {};
+        document.querySelectorAll('#cvSections .section-card').forEach(card => {
+            const sel = card.querySelector('select');
+            const idx = sel?.id?.replace('secType', '');
+            if (!idx) return;
+            const type = document.getElementById('secType' + idx)?.value;
+            if(!groups[type]) groups[type] = [];
+            groups[type].push({
+                title: document.getElementById('secTitle' + idx)?.value,
+                subtitle: document.getElementById('secSubtitle' + idx)?.value,
+                date: document.getElementById('secDate' + idx)?.value,
+                desc: document.getElementById('secDesc' + idx)?.value
+            });
+        });
+
+        for (const [type, items] of Object.entries(groups)) {
+            let h = `<div class="cv-preview-section-title">${type.substring(3)}</div>`;
+            items.forEach(it => {
+                h += `
+                <div class="cv-preview-item">
+                    <div class="cv-preview-item-header">
+                        <div class="cv-preview-item-title">${escapeHtml(it.title)}</div>
+                        <div class="cv-preview-item-date">${escapeHtml(it.date)}</div>
+                    </div>
+                    <div class="cv-preview-item-subtitle">${escapeHtml(it.subtitle)}</div>
+                    <div class="cv-preview-item-desc">${escapeHtml(it.desc).replace(/
+/g, '<br>')}</div>
+                </div>`;
+            });
+            container.innerHTML += h;
+        }
+    }
+async function saveCV() {
       const secs = [];
       document.querySelectorAll('#cvSections .card').forEach(card => {
         const sel = card.querySelector('select');
