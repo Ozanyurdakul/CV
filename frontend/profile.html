@@ -574,15 +574,7 @@
   <!-- JAVASCRIPT LOGIC -->
   <script>
     // Universal API host resolver
-    const API_URL = (function() {
-      if (window.location.hostname.includes('render.com')) {
-        return 'https://cv-backend-8gpl.onrender.com';
-      }
-      if (window.location.port === '5000') {
-        return '';
-      }
-      return 'http://' + window.location.hostname + ':5000';
-    })();
+    const API_URL = '';
 
     let currentUser = null;
     let token = localStorage.getItem('token');

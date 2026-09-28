@@ -77,7 +77,7 @@ router.post('/send-otp', async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: process.env.SMTP_USER,
+      from: '"Kariyerim.com Destek Ekibi" <' + process.env.SMTP_USER + '>',
       to: email,
       subject: 'Kariyerim.com Dogrulama Kodu',
       text: `Kayit olmak icin dogrulama kodunuz: ${otp}`
