@@ -530,7 +530,12 @@
       return (n || 'U')[0].toUpperCase();
     }
 
-    function navigate(page, param) {
+    function navigate(page, param, skipPush) {
+      if (!skipPush) {
+          let url = '/' + (page === 'home' ? '' : page);
+          if (param) url += '?id=' + param;
+          history.pushState({page, param}, '', url);
+      }
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
       
@@ -1377,9 +1382,31 @@
       }
     });
 
+    
+    window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.page) {
+            navigate(e.state.page, e.state.param, true);
+        } else {
+            handleInitialRoute();
+        }
+    });
+
+    function handleInitialRoute() {
+        const path = window.location.pathname.replace('/', '') || 'home';
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        // Validate if path exists, otherwise fallback to home
+        const validPages = ['home','jobs','job-detail','forum','forum-post','people','profile','profile-edit','user-profile','notifications','cv-builder','my-applications'];
+        if (validPages.includes(path)) {
+            navigate(path, id, true);
+        } else {
+            navigate('home', null, true);
+        }
+    }
+
     // Initialize application
     checkAuth();
-    loadHome();
+    handleInitialRoute();
   </script>
 </body>
 </html>
