@@ -26,6 +26,10 @@ services:
         generateValue: true
       - key: PORT
         value: "5000"
+      - key: SMTP_USER
+        value: "ozanyurdakul017@gmail.com"
+      - key: SMTP_PASS
+        value: "otkc zmvt uynx xxom"
       - key: ADMIN_USERNAME
         sync: false
       - key: ADMIN_PASSWORD
