@@ -298,8 +298,9 @@
       <a class="nav-link" onclick="navigate('notifications')" id="nav-notifications" style="display:none"><i class="fas fa-bell"></i><span class="badge" id="notifBadge" style="display:none">0</span></a>
     </div>
     <div class="nav-right">
-      <div id="authButtons">
-        <button class="btn btn-primary btn-sm" onclick="showModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+      <div id="authButtons" style="display: flex; gap: 10px;">
+        <button class="btn btn-secondary btn-sm" onclick="showModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+        <button class="btn btn-primary btn-sm" onclick="showModal('registerModal')"><i class="fas fa-user-plus"></i> Kayıt Ol</button>
       </div>
       <div id="userNav" style="display:none">
         <div class="nav-avatar" id="navAvatar" onclick="toggleUserMenu()">O</div>
@@ -479,6 +480,29 @@
       <div class="form-group"><label class="form-label">Kullanıcı Adı veya Email</label><input class="form-input" id="loginUsername" placeholder="kullanıcı adı veya email"></div>
       <div class="form-group"><label class="form-label">Şifre</label><input class="form-input" id="loginPassword" type="password" placeholder="şifreniz"></div>
       <button class="btn btn-primary btn-lg" onclick="login()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+      
+      <div style="display:flex;align-items:center;margin:20px 0;color:var(--text-muted);font-size:0.85rem">
+        <div style="flex:1;height:1px;background:var(--border-color)"></div>
+        <div style="padding:0 10px">veya</div>
+        <div style="flex:1;height:1px;background:var(--border-color)"></div>
+      </div>
+      <div id="g_id_onload"
+         data-client_id="1075001867992-meofg4g2aqoqkeqs5ockofc13dqe4tu5.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleGoogleLogin"
+         data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+         data-type="standard"
+         data-shape="rectangular"
+         data-theme="filled_black"
+         data-text="signin_with"
+         data-size="large"
+         data-logo_alignment="center"
+         style="display:flex;justify-content:center;">
+      </div>
+
       <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Hesabınız yok mu? <a onclick="hideModal('loginModal');showModal('registerModal')" style="cursor:pointer">Kayıt Olun</a></p>
     </div>
   </div>
@@ -489,11 +513,37 @@
       <button class="modal-close" onclick="hideModal('registerModal')"><i class="fas fa-times"></i></button>
       <div class="modal-title">Kayıt Ol</div>
       <div class="modal-subtitle">Kariyerini şekillendirmeye başla</div>
-      <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" id="regFullName" placeholder="Ad Soyad"></div>
-      <div class="form-group"><label class="form-label">Kullanıcı Adı</label><input class="form-input" id="regUsername" placeholder="kullanici_adi"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="regEmail" type="email" placeholder="email@ornek.com"></div>
-      <div class="form-group"><label class="form-label">Şifre</label><input class="form-input" id="regPassword" type="password" placeholder="En az 6 karakter"></div>
-      <button class="btn btn-primary btn-lg" onclick="register()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-user-plus"></i> Kayıt Ol</button>
+      
+      <div id="regStep1">
+          <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" id="regFullName" placeholder="Ad Soyad"></div>
+          <div class="form-group"><label class="form-label">Kullanıcı Adı</label><input class="form-input" id="regUsername" placeholder="kullanici_adi"></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="regEmail" type="email" placeholder="email@ornek.com"></div>
+          <div class="form-group"><label class="form-label">Şifre</label><input class="form-input" id="regPassword" type="password" placeholder="En az 6 karakter"></div>
+          <button class="btn btn-primary btn-lg" onclick="startRegisterOTP()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-envelope"></i> Doğrulama Kodu Gönder</button>
+          
+          <div style="display:flex;align-items:center;margin:20px 0;color:var(--text-muted);font-size:0.85rem">
+            <div style="flex:1;height:1px;background:var(--border-color)"></div>
+            <div style="padding:0 10px">veya</div>
+            <div style="flex:1;height:1px;background:var(--border-color)"></div>
+          </div>
+          <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="filled_black"
+             data-text="signup_with"
+             data-size="large"
+             data-logo_alignment="center"
+             style="display:flex;justify-content:center;">
+          </div>
+      </div>
+
+      <div id="regStep2" style="display:none; text-align:center;">
+          <i class="fas fa-envelope-open-text" style="font-size:40px; color:var(--accent); margin-bottom:16px;"></i>
+          <p style="margin-bottom:16px;">Mail adresinize gönderdiğimiz 6 haneli doğrulama kodunu girin.</p>
+          <div class="form-group"><input class="form-input" id="regOTP" placeholder="000000" style="text-align:center; font-size:24px; letter-spacing:8px;" maxlength="6"></div>
+          <button class="btn btn-primary btn-lg" onclick="completeRegisterOTP()" style="width:100%;justify-content:center;margin-top:8px"><i class="fas fa-check"></i> Kaydı Tamamla</button>
+      </div>
+
       <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted)">Zaten hesabınız var mı? <a onclick="hideModal('registerModal');showModal('loginModal')" style="cursor:pointer">Giriş Yapın</a></p>
     </div>
   </div>
